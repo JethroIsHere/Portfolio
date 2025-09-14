@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap" rel="stylesheet">
+    <title>Jethro Roland Danocup - Home</title>
+    <!-- THREE.js for animated background -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <style>
+        :root {
+            --primary-accent: #9397E9;
+            --secondary-accent: #00e5ff;
+            --text-primary: #e0e0e0;
+            --text-secondary: antiquewhite;
+        }
+        html {
+        background: #0f0c29; /* Fallback background */
+        overflow-x: hidden;
+        color: var(--text-primary);
+        }
+        body{
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+        }
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        main {
+            flex-grow: 1; 
+            padding-top: 5vh;
+            position: relative; /* Needed for content to sit above canvas */
+            z-index: 1;
+        }
+        p {
+            line-height: 1.7;
+        }
+        #name{
+        color: var(--text-secondary);
+        font-family: 'Merriweather', serif;
+        font-size: clamp(1.25rem, 2vw, 1.75rem);
+        margin-top: 0px;
+        }
+        .nav-div{
+        padding: 3vh 0;
+        }
+        .nav-bar{
+        display: flex;
+        flex-direction: row;
+        margin-left: 5.5vw;
+        align-items: baseline;
+        justify-content: space-between; 
+        padding-right: 5.5vw;
+        }
+        .nav-bar-list{
+            display: grid;
+            grid-template-columns: 9vw 9vw 9vw 10vw 10vw 10vw;
+            margin: 0;
+            padding: 0;
+            list-style-type: none;
+        }
+        .nav-list{
+        font-family: 'Poppins', sans-serif;
+        font-weight: bold;
+        display: flex;
+        list-style-type: none;
+        }
+        .nav{
+        font-size: clamp(0.9rem, 1.7vw, 1.25rem);
+        color: var(--text-secondary);
+        text-decoration: none;
+        position: relative;
+        padding-bottom: 5px;
+        }
+        .nav::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: var(--secondary-accent);
+            transform: scaleX(0);
+            transform-origin: bottom right;
+            transition: transform 0.3s ease-out;
+        }
+        .nav:hover::after {
+            transform: scaleX(1);
+            transform-origin: bottom left;
+        }
+        h2 {
+            font-family: 'Merriweather', serif;
+            font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+            margin-bottom: 1.5rem;
+            background: linear-gradient(90deg, var(--secondary-accent), var(--text-secondary), var(--secondary-accent));
+            background-size: 200% auto;
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: gradient-shine 5s linear infinite;
+        }
+        .Hero-section {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            flex-grow: 1;
+        }
+        #Headline {
+            font-family: 'Merriweather', serif;
+            font-size: clamp(3rem, 8vw, 6rem);
+            margin-bottom: 1rem;
+            background: linear-gradient(90deg, var(--secondary-accent), var(--text-secondary), var(--secondary-accent));
+            background-size: 200% auto;
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: gradient-shine 5s linear infinite;
+        }
+        #sub-heading {
+            font-family: 'Poppins', sans-serif;
+            font-size: clamp(1rem, 2vw, 1.5rem);
+        }
+        #sub-heading .cursor {
+            display: inline-block;
+            background-color: var(--secondary-accent);
+            margin-left: 0.1rem;
+            width: 3px;
+            animation: blink 0.7s infinite;
+        }
+        footer{
+        font-family: 'Merriweather', serif;
+        text-align: center;
+        padding: 2vh 0;
+        width: 100%;
+        font-size: clamp(0.8rem, 1.5vw, 1rem);
+        position: relative; /* Keep footer above canvas */
+        z-index: 1;
+        }
+        #particle-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+        .nav-toggle { display: none; }
+        .nav-toggle-label { display: none; cursor: pointer; }
+        .nav-toggle-label span,
+        .nav-toggle-label span::before,
+        .nav-toggle-label span::after {
+            display: block; background: var(--text-secondary); height: 3px;
+            width: 25px; border-radius: 2px; position: relative;
+        }
+        .nav-toggle-label span::before,
+        .nav-toggle-label span::after { content: ''; position: absolute; }
+        .nav-toggle-label span::before { bottom: 8px; }
+        .nav-toggle-label span::after { top: 8px; }
+        .reveal {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        @keyframes gradient-shine { to { background-position: 200% center; } }
+        @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+
+        @media (max-width: 768px) {
+            .nav-bar-list {
+                display: none; position: fixed; top: 0; right: -100%;
+                background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(10px);
+                width: 100%; height: 100vh; flex-direction: column;
+                align-items: center; justify-content: center;
+                transition: right 0.3s ease-in-out;
+            }
+            .nav-list { padding: 10px 0; }
+            .nav-toggle-label { display: block; z-index: 101; }
+            .nav-toggle:checked ~ .nav-bar-list { right: 0; }
+        }
+    </style>
+</head>
+<body>
+    <div id="particle-canvas"></div>
+    <header>
+        <div class="nav-div">
+        <nav class="nav-bar">
+            <h2 id="name">Jethro Roland Danocup</h2>
+            <input type="checkbox" id="nav-toggle" class="nav-toggle">
+            <label for="nav-toggle" class="nav-toggle-label">
+                <span></span>
+            </label>
+            <ul class="nav-bar-list">
+                <li class="nav-list"><a class="nav" href="index.html">HOME</a></li>
+                <li class="nav-list"><a class="nav" href="./public/resume.html">RESUME</a></li>
+                <li class="nav-list"><a class="nav" href = ./public/about.html>ABOUT</a></li>
+                <li class="nav-list"><a class="nav" href = ./public/contact.html>CONTACT</a></li>
+                <li class="nav-list"><a class="nav" href = ./public/my-projects.html>PROJECTS</a></li>
+                <li class="nav-list"><a class="nav" href = ./public/achievements.html>ACHIEVEMENTS</a></li>
+            </ul>
+        </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="Hero-section reveal">
+            <div class="Hero outside">
+                <div class="Hero inside">
+                <div class="Headline"><h1 id="Headline">WELCOME</h1></div>
+                <div class="sub-heading"><p id="sub-heading"></p></div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        &copy; <span id="current-year"></span> Jethro Roland Danocup. All Rights Reserved.
+    </footer>
+
+    <script>
+        // --- DYNAMIC YEAR & SCROLL ANIMATION ---
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+        const revealElements = document.querySelectorAll('.reveal');
+        const revealOnScroll = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1 });
+        revealElements.forEach(elem => revealOnScroll.observe(elem));
+
+        // --- TYPING EFFECT ---
+        const typingText = "This is my personal website. Feel free to run through each and every section for you to get to know more about me.";
+        const subHeadingElement = document.getElementById('sub-heading');
+        subHeadingElement.innerHTML = '';
+        let i = 0;
+        function typeWriter() {
+            if (i < typingText.length) {
+                subHeadingElement.innerHTML = typingText.substring(0, i + 1) + '<span class="cursor"></span>';
+                i++;
+                setTimeout(typeWriter, 50);
+            } else {
+                subHeadingElement.querySelector('.cursor').style.animation = 'blink 1s infinite';
+            }
+        }
+        setTimeout(typeWriter, 500);
+
+        // --- THREE.JS PARTICLE BACKGROUND ---
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        const renderer = new THREE.WebGLRenderer({ alpha: true });
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        document.getElementById('particle-canvas').appendChild(renderer.domElement);
+        const particlesGeometry = new THREE.BufferGeometry;
+        const particlesCount = 5000;
+        const posArray = new Float32Array(particlesCount * 3);
+        for(let i = 0; i < particlesCount * 3; i++) {
+            posArray[i] = (Math.random() - 0.5) * 10;
+        }
+        particlesGeometry.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
+        const particlesMaterial = new THREE.PointsMaterial({ size: 0.005, color: 'antiquewhite' });
+        const particlesMesh = new THREE.Points(particlesGeometry, particlesMaterial);
+        scene.add(particlesMesh);
+        camera.position.z = 2;
+        const animate = () => {
+            requestAnimationFrame(animate);
+            particlesMesh.rotation.y += 0.0002;
+            particlesMesh.rotation.x += 0.0002;
+            renderer.render(scene, camera);
+        };
+        animate();
+        window.addEventListener('resize', () => {
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+        });
+    </script>
+</body>
+</html>

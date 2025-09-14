@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Information</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap" rel="stylesheet">
+    <style>
+    :root {
+        --primary-accent: #9397E9;
+        --secondary-accent: #00e5ff;
+        --text-primary: #e0e0e0;
+        --text-secondary: antiquewhite;
+    }
+    html {
+    background: url('../assets/images/Background4.png') no-repeat center center fixed;
+    background-size: cover;
+    width: 100vw;
+    height: 100vh;
+    overflow-x: hidden;
+    color: var(--text-primary);
+    }
+    body{
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    }
+    header {
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+    main {
+        flex-grow: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding-top: 5vh;
+    }
+    p {
+        line-height: 1.7;
+    }
+    #name{
+    color: var(--text-secondary);
+    font-family: 'Merriweather', serif;
+    font-size: clamp(1.25rem, 2vw, 1.75rem);
+    margin-top: 0px;
+    }
+    .nav-div{
+    padding: 3vh 0;
+    }
+    .nav-bar{
+    display: flex;
+    flex-direction: row;
+    margin-left: 5.5vw;
+    align-items: baseline;
+    justify-content: space-between; 
+    padding-right: 5.5vw;
+    }
+    .nav-bar-list{
+    display: grid;
+    grid-template-columns:  9vw 9vw 9vw 10vw 10vw 10vw;
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+    }
+    .nav-list{
+    font-family: 'Poppins', sans-serif;
+    font-weight: bold;
+    display: flex;
+    list-style-type: none;
+    }
+    .nav{
+    font-size: clamp(0.9rem, 1.7vw, 1.25rem);
+    color: var(--text-secondary);
+    text-decoration: none;
+    position: relative;
+    padding-bottom: 5px;
+    }
+    .nav::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 2px;
+        background-color: var(--secondary-accent);
+        transform: scaleX(0);
+        transform-origin: bottom right;
+        transition: transform 0.3s ease-out;
+    }
+    .nav:hover::after {
+        transform: scaleX(1);
+        transform-origin: bottom left;
+    }
+    h2 {
+        font-family: 'Merriweather', serif;
+        font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+        margin-bottom: 1.5rem;
+        background: linear-gradient(90deg, var(--secondary-accent), var(--text-secondary), var(--secondary-accent));
+        background-size: 200% auto;
+        background-clip: text;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        animation: gradient-shine 5s linear infinite;
+    }
+    footer{
+    font-family: 'Merriweather', serif;
+    text-align: center;
+    padding: 2vh 0;
+    width: 100%;
+    font-size: clamp(0.8rem, 1.5vw, 1rem);
+    }
+    #con{
+    font-family: 'Merriweather', serif;
+    font-size: clamp(1.75rem, 3vw, 2.25rem);
+    text-align: center;
+    background: linear-gradient(90deg, var(--secondary-accent), var(--text-secondary), var(--secondary-accent));
+    background-size: 200% auto;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: gradient-shine 5s linear infinite;
+    }
+    .one{
+    font-family: 'Poppins', sans-serif;
+    font-size: clamp(1rem, 1.5vw, 1.25rem);
+    }
+    .contact{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-flow: column wrap;
+    width: 40vw;
+    }
+    .nav-toggle { display: none; }
+    .nav-toggle-label { display: none; cursor: pointer; }
+    .nav-toggle-label span,
+    .nav-toggle-label span::before,
+    .nav-toggle-label span::after {
+        display: block; background: var(--text-secondary); height: 3px;
+        width: 25px; border-radius: 2px; position: relative;
+    }
+    .nav-toggle-label span::before,
+    .nav-toggle-label span::after { content: ''; position: absolute; }
+    .nav-toggle-label span::before { bottom: 8px; }
+    .nav-toggle-label span::after { top: 8px; }
+
+    .reveal {
+        opacity: 0;
+        transform: translateY(50px);
+        transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    }
+    .reveal.active {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    .glass-card {
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border-radius: 20px;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        padding: 2rem;
+    }
+    @keyframes gradient-shine { to { background-position: 200% center; } }
+    
+    @media (max-width: 768px) {
+        .contact {
+            width: 80vw;
+        }
+        .nav-bar-list {
+            display: none; position: fixed; top: 0; right: -100%;
+            background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(10px);
+            width: 100%; height: 100vh; flex-direction: column;
+            align-items: center; justify-content: center;
+            transition: right 0.3s ease-in-out;
+        }
+        .nav-list { padding: 10px 0; }
+        .nav-toggle-label { display: block; z-index: 101;}
+        .nav-toggle:checked ~ .nav-bar-list { right: 0; }
+    }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="nav-div">
+            <nav class="nav-bar">
+                <h2 id="name">Jethro Roland Danocup</h2>
+                <input type="checkbox" id="nav-toggle" class="nav-toggle">
+                <label for="nav-toggle" class="nav-toggle-label">
+                    <span></span>
+                </label>
+                <ul class="nav-bar-list">
+                    <li class="nav-list"><a class="nav" href="../index.html">HOME</a></li>
+                    <li class="nav-list"><a class="nav" href="./resume.html">RESUME</a></li>
+                    <li class="nav-list"><a class="nav" href = ./about.html>ABOUT</a></li>
+                    <li class="nav-list"><a class="nav" href = ./contact.html>CONTACT</a></li>
+                    <li class="nav-list"><a class="nav" href = ./my-projects.html>PROJECTS</a></li>
+                    <li class="nav-list"><a class="nav" href = ./achievements.html>ACHIEVEMENTS</a></li>
+                </ul>
+            </nav>
+            </div>
+    </header>
+
+    <main>
+        <section>
+        <div class = "contact reveal glass-card">
+            <h1 id = con class = one>Contact Details:</h1>
+                <p class = one>
+                Mobile Numbers: +639270460645, +639106164384 <br>
+                Facebook: Jethro Roland Danocup <br>
+                Email: jethroroland.danocup@wvsu.edu.ph<br>
+                Github: JethroIsHere
+                </p>
+        </div>
+        </section>
+    </main>
+
+    <footer>
+        &copy; <span id="current-year"></span> Jethro Roland Danocup. All Rights Reserved.
+    </footer>
+
+    <script>
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+    </script>
+    <script>
+        const revealElements = document.querySelectorAll('.reveal');
+        const revealOnScroll = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1 });
+        revealElements.forEach(elem => revealOnScroll.observe(elem));
+    </script>
+</body>
+</html>
