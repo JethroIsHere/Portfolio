@@ -1,77 +1,73 @@
-# Portfolio
+# Jethro Roland Danocup - Personal Portfolio Website
 
-Jethro Roland Danocup - Personal Portfolio Website 
-This repository contains the source code for my personal portfolio website. It's a fully
-responsive, multi-page site designed to showcase my skills, projects,
-and achievements as a Computer Science student and aspiring developer.
+![Portfolio Screenshot](./assets/images/portfolio-screenshot.png)
+### [View Live Demo](https://jethroishere.github.io/portfolio-danocup/) &nbsp;👈
+---
 
-## Features
+## 📖 About The Project
 
-This portfolio is built with modern web technologies and includes a
-range of aesthetic and functional features to create an engaging user
-experience.
+This repository contains the source code for my personal portfolio website. It is a fully responsive, multi-page static site designed from the ground up to showcase my skills, projects, and achievements as a Computer Science student majoring in Artificial Intelligence.
 
-### Design & Aesthetics
+The design is centered around a modern, celestial "outer space" theme, utilizing a **glassmorphism** aesthetic, dynamic animations, and interactive elements to create an engaging user experience.
 
--   **Consistent Color Palette**: A unified color scheme is used across
-    all pages for a professional look.
--   **Glassmorphism UI**: Key content areas use a semi-transparent,
-    blurred background effect for a modern, layered appearance.
--   **Dynamic Animated Background**: The homepage features a subtle,
-    moving particle animation created with three.js.
--   **Animated Gradient Headings**: Major headings have a shimmering
-    gradient effect to draw attention.
--   **Interactive Hover Effects**: Project and achievement cards lift up
-    on hover, providing satisfying visual feedback.
--   **Rounded Corners**: All images and cards have rounded corners for a
-    soft, modern design.
--   **Improved Typography**: Text is optimized for readability with
-    improved line spacing.
+---
 
-### Functionality & UX
+## ✨ Key Features
 
--   **Fully Responsive**: The layout adapts seamlessly to all screen
-    sizes, from mobile phones to desktop monitors.
--   **Sticky Navigation Bar**: The header remains fixed at the top of
-    the page for easy navigation.
--   **Responsive Mobile Menu**: On smaller screens, the navigation
-    collapses into a full-screen overlay menu.
--   **Reveal-on-Scroll Animations**: Content sections, images, and cards
-    smoothly slide up as they enter the viewport.
--   **Dynamic "Typing" Effect**: The homepage sub-heading types itself
-    out for an interactive introduction.
--   **Dynamic Copyright Year**: The copyright year in the footer
-    automatically updates to the current year using JavaScript.
+-   **Fully Responsive Design:** Adapts seamlessly to all screen sizes, from mobile phones to high-resolution desktops.
+-   **Comprehensive Multi-Page Layout:** Includes six distinct pages:
+    -   **Home:** A welcoming landing page with an animated hero section and a summary of the portfolio's key sections.
+    -   **About:** A detailed personal introduction, including a "My Philosophy" section and personal interests.
+    -   **Resume:** A professional, well-structured digital resume with a "Download CV" option.
+    -   **Projects:** An organized gallery showcasing collaborative, web, and Python-based projects.
+    -   **Achievements:** An interactive timeline displaying all certificates and awards.
+    -   **Contact:** A modern contact page with direct info and a functional email form.
+-   **Interactive Homepage:** Features a dynamic background with **Three.js** particles and a custom animated constellation graphic created with the **HTML5 Canvas API**.
+-   **On-Scroll Animations:** Content sections gracefully fade and slide into view as the user scrolls, powered by the Intersection Observer API.
+-   **Cross-Page Background Music:** An optional background music player with user controls that persists playback state and time across all pages using `localStorage`.
 
-## Tech Stack
+---
 
--   **HTML5**
--   **CSS3** (with Flexbox and Grid for layout)
--   **JavaScript (ES6)**
--   **three.js** (for the homepage particle animation)
+## 🛠️ Tech Stack
 
-## File Structure
+This project was built using core front-end technologies, with no external frameworks.
 
-The project is organized into a clean and logical file structure:
+-   **HTML5:** For semantic structure and content.
+-   **CSS3:** For all styling, including:
+    -   Flexbox & Grid for responsive layouts
+    -   Custom Animations & Transitions
+    -   Glassmorphism effects (`backdrop-filter`)
+-   **JavaScript (ES6+):** For all dynamic functionality:
+    -   DOM Manipulation
+    -   HTML5 Canvas API for the constellation animation
+    -   Intersection Observer API for scroll animations
+    -   `localStorage` for persistent music playback
+-   **Three.js:** A lightweight library used for the animated 3D particle background on the homepage.
 
-    PORTFOLIO/
-    │
-    ├── assets/
-    │   └── images/               # Background images, profile photo, etc.
-    │
-    ├── certificates/             # Images of certificates for the achievements page
-    │
-    ├── projects/
-    │   ├── 1/                    # Folder for Project 1
-    │   ├── 2/                    # Folder for Project 2
-    │   └── thumbnails/           # Thumbnail images for the projects page
-    │
-    ├── public/
-    │   ├── about.html
-    │   ├── achievements.html
-    │   ├── contact.html
-    │   ├── my-projects.html
-    │   └── resume.html
-    │
-    ├── index.html                # The main homepage
-    └── README.md                 # This file
+---
+
+## 🚀 Getting Started
+
+To run this project locally:
+
+1.  Clone the repository:
+    ```sh
+    git clone [https://github.com/JethroIsHere/your-portfolio-repo-name.git](https://github.com/JethroIsHere/your-portfolio-repo-name.git)
+    ```
+    2.  Navigate to the project directory:
+    ```sh
+    cd your-portfolio-repo-name
+    ```
+3.  Open the `index.html` file in your favorite web browser.
+
+---
+
+## 👤 Author & Contact
+
+**Jethro Roland Danocup**
+
+-   **GitHub:** [@JethroIsHere](https://github.com/JethroIsHere)
+-   **Facebook:** [Jethro Roland Danocup](https://www.facebook.com/jethro.roland.danocup)
+-   **Instagram:** [@___ro__n_](https://www.instagram.com/___ro__n_/)
+
+*Last updated: September 15, 2025*
