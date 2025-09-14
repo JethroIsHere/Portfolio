@@ -9,13 +9,15 @@
     <link href="https://fonts.googleapis.com/css2?family=Merriweather&display=swap" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;400;600&display=swap" rel="stylesheet">
     <style>
     :root {
         --primary-accent: #9397E9;
         --secondary-accent: #00e5ff;
         --text-primary: #e0e0e0;
         --text-secondary: antiquewhite;
+        --glass-bg: rgba(255, 255, 255, 0.05);
+        --glass-border: 1px solid rgba(255, 255, 255, 0.1);
     }
     html {
     background: url('../assets/images/Background3.png') no-repeat center center fixed;
@@ -27,6 +29,7 @@
     }
     body{
     margin: 0;
+    font-family: 'Poppins', sans-serif;
     display: flex;
     flex-direction: column;
     min-height: 100vh;
@@ -42,16 +45,12 @@
     }
     main {
         flex-grow: 1;
-        padding-top: 5vh;
+        padding: 5vh 0;
     }
     p{
-    font-family: 'Poppins', sans-serif;
-    text-indent: 3vw;
-    text-align: justify;
-    margin-left: 3vw;
-    margin-right: 3vw;
     font-size: clamp(0.9rem, 1.2vw, 1.1rem);
-    line-height: 1.7;
+    line-height: 1.8;
+    font-weight: 200;
     }
     #name{
     color: var(--text-secondary);
@@ -67,7 +66,7 @@
     display: flex;
     flex-direction: row;
     margin-left: 5.5vw;
-    align-items: baseline;
+    align-items: center;
     justify-content: space-between; 
     padding-right: 5.5vw;
     }
@@ -107,20 +106,12 @@
         transform: scaleX(1);
         transform-origin: bottom left;
     }
-    footer{
-    font-family: 'Merriweather', serif;
-    text-align: center;
-    padding: 2vh 0;
-    width: 100%;
-    font-size: clamp(0.8rem, 1.5vw, 1rem);
-    }
-    .second{
-    color: var(--text-secondary);
-    font-family: 'Merriweather', serif;
-    font-size: clamp(1.2rem, 1.5vw, 1.5rem);
-    }
-    .second h1 {
-        font-size: clamp(1.75rem, 3vw, 2.25rem);
+    
+    .section-heading {
+        font-family: 'Merriweather', serif;
+        font-size: clamp(2rem, 5vw, 3rem);
+        margin-bottom: 2rem;
+        text-align: center;
         background: linear-gradient(90deg, var(--secondary-accent), var(--text-secondary), var(--secondary-accent));
         background-size: 200% auto;
         background-clip: text;
@@ -128,37 +119,97 @@
         -webkit-text-fill-color: transparent;
         animation: gradient-shine 5s linear infinite;
     }
-    li{
-        list-style-type: none;
-        font-size: clamp(0.9rem, 1.2vw, 1.1rem);
-        overflow-wrap: break-word;
-        word-break: break-word;
-        line-height: 1.8;
-        }
-    h2 {
-            font-family: 'Merriweather', serif;
-            font-size: clamp(1.75rem, 3.5vw, 2.5rem);
-            margin-bottom: 1.5rem;
-            background: linear-gradient(90deg, var(--secondary-accent), var(--text-secondary), var(--secondary-accent));
-            background-size: 200% auto;
-            background-clip: text;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            animation: gradient-shine 5s linear infinite;
-        }
-    #image{
-      width: 15vw;
-      margin-top: 1vw;
-      border-radius: 50%;
+
+    .content-section {
+        padding: 2rem 5.5vw;
+        margin: 0 auto 2rem auto;
+        max-width: 1200px;
     }
-    #about{
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      flex-direction: column;
-      margin-left: auto;
-      margin-right: auto;
-      width: 55vw;
+
+    .about-grid {
+        display: grid;
+        grid-template-columns: 1fr 2fr;
+        align-items: center;
+        gap: 3rem;
+    }
+    #about-image-container {
+        text-align: center;
+    }
+    #image{
+      width: 100%;
+      max-width: 300px;
+      border-radius: 50%;
+      border: 3px solid var(--secondary-accent);
+    }
+    #about-text-container h2 {
+        text-align: left;
+        font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+    }
+    #about-text-container p {
+        text-align: justify;
+    }
+
+    #philosophy-list {
+        list-style-type: none;
+        padding: 0;
+    }
+    #philosophy-list li {
+        background: var(--glass-bg);
+        border: var(--glass-border);
+        border-radius: 15px;
+        padding: 1.5rem;
+        margin-bottom: 1rem;
+        display: flex;
+        align-items: flex-start;
+        gap: 1.5rem;
+    }
+    #philosophy-list svg {
+        flex-shrink: 0;
+        width: 28px;
+        height: 28px;
+        color: var(--secondary-accent);
+        margin-top: 5px;
+    }
+    #philosophy-list h3 {
+        margin: 0 0 0.5rem 0;
+        color: var(--text-secondary);
+        font-family: 'Merriweather', serif;
+    }
+
+    #interests {
+        text-align: center;
+    }
+    .interests-grid {
+        display: flex;
+        justify-content: center;
+        gap: 2rem;
+        flex-wrap: wrap;
+        margin-top: 2rem;
+    }
+    .interest-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.5rem;
+        font-family: 'Poppins', sans-serif;
+        color: var(--text-secondary);
+        min-width: 120px;
+    }
+    .interest-item svg {
+        color: var(--secondary-accent);
+        width: 48px;
+        height: 48px;
+    }
+    h2 {
+        font-family: 'Merriweather', serif;
+        font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+        margin-bottom: 1.5rem;
+        background: linear-gradient(90deg, var(--secondary-accent), var(--text-secondary), var(--secondary-accent));
+        background-size: 200% auto;
+        background-clip: text;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        animation: gradient-shine 5s linear infinite;
     }
     .nav-toggle { display: none; }
     .nav-toggle-label { display: none; }
@@ -184,57 +235,65 @@
     }
 
     .glass-card {
-        background: rgba(255, 255, 255, 0.1);
+        background: var(--glass-bg);
         backdrop-filter: blur(12px);
         -webkit-backdrop-filter: blur(12px);
         border-radius: 20px;
-        border: 1px solid rgba(255, 255, 255, 0.2);
+        border: var(--glass-border);
         padding: 2rem;
     }
     
-    #interests {
-        margin: 2rem auto;
-        width: 60vw;
+    footer {
+        background: rgba(255, 255, 255, 0.05);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        padding: 2rem 1rem;
         text-align: center;
+        width: 100%;
+        position: relative;
+        z-index: 1;
+        box-sizing: border-box;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
     }
-    #interests h2 {
-        font-size: clamp(1.5rem, 2.5vw, 2rem);
-        margin-bottom: 2rem;
-        background: linear-gradient(90deg, var(--secondary-accent), var(--text-secondary), var(--secondary-accent));
-        background-size: 200% auto;
-        background-clip: text;
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        animation: gradient-shine 5s linear infinite;
+    .social-icons {
+        margin-bottom: 1rem;
     }
-    .interests-grid {
-        display: flex;
-        justify-content: center;
-        gap: 2rem;
-        flex-wrap: wrap;
-    }
-    .interest-item {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 0.5rem;
-        font-family: 'Poppins', sans-serif;
+    .social-icons a {
         color: var(--text-secondary);
+        margin: 0 15px;
+        text-decoration: none;
+        transition: color 0.3s ease, transform 0.3s ease;
+        display: inline-block;
     }
-    .interest-item svg {
+    .social-icons a:hover {
         color: var(--secondary-accent);
-        width: 48px;
-        height: 48px;
+        transform: translateY(-5px);
     }
+    .social-icons svg {
+        width: 28px;
+        height: 28px;
+    }
+    .footer-copyright {
+        font-family: 'Merriweather', serif;
+        font-size: clamp(0.8rem, 1.5vw, 1rem);
+        color: var(--text-primary);
+    }
+
     @keyframes gradient-shine { to { background-position: 200% center; } }
     
+    @media (max-width: 900px) {
+        .about-grid {
+            grid-template-columns: 1fr; /* Stack columns on smaller screens */
+        }
+        #about-image-container {
+            margin-bottom: 1rem;
+        }
+        #about-text-container h2 {
+            text-align: center;
+        }
+    }
+
     @media (max-width: 768px) {
-        #about, #interests {
-            width: 85vw;
-        }
-        #image {
-            width: 35vw;
-        }
         .nav-bar-list {
             display: none;
             position: fixed; 
@@ -290,53 +349,72 @@
   </header>
   
   <main>
-    <section>
-        <div id="about" class="reveal glass-card">
-            <div class = second><img id = "image" src = ../assets/images/Jethro.png alt="Jethro's 1x1 ID Photo"></div>
-            <div class = second><h1>About Me</h1></div>
-            <p>I am Jethro Roland Danocup, a third year Computer Science student majoring in Artificial Intelligence
-              studying at West Visayas State University - Main Campus. I want to be
-              a Programmer/Coder someday specializing in Web, and Mobile Application Development. I will persevere
-              to reach my dreams. </p>
-            <p>I am currently 21 years old, and I like to study on my free time or watch something entertaining. 
-              I also enjoy listening to music, singing, and dancing
-              while I am alone. I am a language learner as well, I am trying to acquire the Japanese language, and I have
-              been studying for almost 3 years now. My grit will help me reach my goals.</p>
-            <p>I hope you root for my success in this field! 
-              It is tiring to learn new concepts everyday but I will just do my best to take in what I can absorb.
-            </p>
-        </div>
-    </section>
-    
-    <section class="reveal">
-        <div id="interests" class="glass-card">
-            <h2>My Interests</h2>
-            <div class="interests-grid">
-                <div class="interest-item">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16"><path d="M7.839 1.48.003 7.844a.5.5 0 0 0 .353.853l4.113.632 2.083 4.86a.5.5 0 0 0 .918-.002l1.04-2.423 2.424-1.04a.5.5 0 0 0 .002-.918L9.324 7.78l-.632-4.113a.5.5 0 0 0-.853-.354ZM6.373 6.373l.255.593.593.255-1.002.43-1.03 2.398-2.398 1.03-.43-1.002.255.593.593.255-1.002.43-1.03 2.398-2.398 1.03-.43-1.002z"/></svg>
-                    <span>Japanese Language</span>
-                </div>
-                <div class="interest-item">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16"><path d="M12 13c0 1.105-1.12 2-2.5 2S7 14.105 7 13s1.12-2 2.5-2 2.5.895 2.5 2z"/><path fill-rule="evenodd" d="M12 3v10h-1V3h1z"/><path d="M11 2.82a1 1 0 0 1 .804-.98l3-.6A1 1 0 0 1 16 2.22V4l-5 1V2.82z"/></svg>
-                    <span>Music & Singing</span>
-                </div>
-                 <div class="interest-item">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-book" viewBox="0 0 16 16"><path d="M1 2.828c.885-.37 2.154-.769 3.388-.893 1.33-.134 2.458.063 3.112.752v9.746c-.935-.53-2.12-.603-3.213-.493-1.18.12-2.37.461-3.287.811V2.828zm7.5-.141c.654-.689 1.782-.886 3.112-.752 1.234.124 2.503.523 3.388.893v9.746c-.917-.35-2.107-.69-3.287-.81-1.094-.111-2.278-.039-3.213.492V2.687zM8 1.783C7.015.936 5.587.81 4.287.94c-1.514.153-3.042.672-3.994 1.105A.5.5 0 0 0 0 2.5v11a.5.5 0 0 0 .707.455c.882-.4 2.303-.881 3.68-1.02 1.409-.142 2.59.087 3.223.877a.5.5 0 0 0 .78 0c.633-.79 1.814-1.019 3.222-.877 1.378.139 2.8.62 3.681 1.02A.5.5 0 0 0 16 13.5v-11a.5.5 0 0 0-.293-.455c-.952-.433-2.48-.952-3.994-1.105C10.413.809 8.985.936 8 1.783z"/></svg>
-                    <span>Studying</span>
-                </div>
+    <section class="content-section reveal">
+        <div class="about-grid glass-card">
+            <div id="about-image-container">
+                <img id="image" src="../assets/images/Jethro.png" alt="Jethro's Profile Photo">
+            </div>
+            <div id="about-text-container">
+                <h2 class="section-heading" style="text-align: left; margin-bottom: 1rem;">My Story</h2>
+                <p>I am Jethro Roland Danocup, a third-year Computer Science student majoring in Artificial Intelligence at West Visayas State University. My ambition is to become a versatile programmer specializing in Web and Mobile Application Development, and I am committed to persevering to reach my dreams.</p>
+                <p>Currently 21 years old, I dedicate my free time to studying and exploring entertaining content. I also find joy in music, singing, and dancing. As an avid language learner, I have been studying Japanese for nearly three years. I believe my grit and passion for learning will be the keys to achieving my goals.</p>
             </div>
         </div>
-    </section><br>
+    </section>
+
+    <section class="content-section reveal">
+        <h2 class="section-heading">My Philosophy</h2>
+        <ul id="philosophy-list">
+            <li class="reveal">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16"><path d="M11.536.832a.5.5 0 0 1 .632.632l-1.637 4.542.895.325 3.328-1.597a.5.5 0 0 1 .63.63l-1.6 3.328.326.895 4.542-1.637a.5.5 0 0 1 .632.632l-4.04 7.46a.5.5 0 0 1-.884-.012L7.99 8.51 1.02.483a.5.5 0 0 1 .63-.63l7.46 4.04 1.426-3.06z"/></svg>
+                <div>
+                    <h3>Purposeful Creation</h3>
+                    <p>I believe technology should be more than just functional; it should be intuitive, elegant, and solve real-world problems. Every line of code is an opportunity to build something meaningful.</p>
+                </div>
+            </li>
+             <li class="reveal">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16"><path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/><path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/></svg>
+                <div>
+                    <h3>Continuous Learning</h3>
+                    <p>The world of technology is always evolving, and so am I. I am committed to lifelong learning, constantly exploring new concepts, and challenging myself to absorb as much as I can.</p>
+                </div>
+            </li>
+        </ul>
+    </section>
+    
+    <section id="interests" class="content-section reveal glass-card">
+        <h2 class="section-heading">My Interests</h2>
+        <div class="interests-grid">
+            <div class="interest-item">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16"><path d="M7.839 1.48.003 7.844a.5.5 0 0 0 .353.853l4.113.632 2.083 4.86a.5.5 0 0 0 .918-.002l1.04-2.423 2.424-1.04a.5.5 0 0 0 .002-.918L9.324 7.78l-.632-4.113a.5.5 0 0 0-.853-.354ZM6.373 6.373l.255.593.593.255-1.002.43-1.03 2.398-2.398 1.03-.43-1.002.255.593.593.255-1.002.43-1.03 2.398-2.398 1.03-.43-1.002z"/></svg>
+                <span>Japanese Language</span>
+            </div>
+            <div class="interest-item">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16"><path d="M12 13c0 1.105-1.12 2-2.5 2S7 14.105 7 13s1.12-2 2.5-2 2.5.895 2.5 2z"/><path fill-rule="evenodd" d="M12 3v10h-1V3h1z"/><path d="M11 2.82a1 1 0 0 1 .804-.98l3-.6A1 1 0 0 1 16 2.22V4l-5 1V2.82z"/></svg>
+                <span>Music & Singing</span>
+            </div>
+             <div class="interest-item">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-book" viewBox="0 0 16 16"><path d="M1 2.828c.885-.37 2.154-.769 3.388-.893 1.33-.134 2.458.063 3.112.752v9.746c-.935-.53-2.12-.603-3.213-.493-1.18.12-2.37.461-3.287.811V2.828zm7.5-.141c.654-.689 1.782-.886 3.112-.752 1.234.124 2.503.523 3.388.893v9.746c-.917-.35-2.107-.69-3.287-.81-1.094-.111-2.278-.039-3.213.492V2.687zM8 1.783C7.015.936 5.587.81 4.287.94c-1.514.153-3.042.672-3.994 1.105A.5.5 0 0 0 0 2.5v11a.5.5 0 0 0 .707.455c.882-.4 2.303-.881 3.68-1.02 1.409-.142 2.59.087 3.223.877a.5.5 0 0 0 .78 0c.633-.79 1.814-1.019 3.222-.877 1.378.139 2.8.62 3.681 1.02A.5.5 0 0 0 16 13.5v-11a.5.5 0 0 0-.293-.455c-.952-.433-2.48-.952-3.994-1.105C10.413.809 8.985.936 8 1.783z"/></svg>
+                <span>Studying</span>
+            </div>
+        </div>
+    </section>
   </main>
 
     <footer>
-        &copy; <span id="current-year"></span> Jethro Roland Danocup. All Rights Reserved.
+        <div class="social-icons">
+            <a href="https://github.com/JethroIsHere" target="_blank" aria-label="GitHub Profile"><svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg></a>
+            <a href="https://www.facebook.com/jethro.roland.danocup" target="_blank" aria-label="Facebook Profile"><svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16"><path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0 0 3.596 0 8.049c0 4.051 2.956 7.424 6.838 7.951v-5.625h-2.03V8.05H6.838V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.882-.527 6.75-3.901 6.75-7.951z"/></svg></a>
+            <a href="https://www.instagram.com/___ro__n_/?igsh=MWV2Nm1pdWdqazNraw%3D%3D&utm_source=qr#" target="_blank" aria-label="Instagram Profile"><svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16"><path d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.917 3.917 0 0 0-1.417.923A3.927 3.927 0 0 0 .42 2.76C.222 3.268.087 3.85.048 4.7.01 5.555 0 5.827 0 8.001c0 2.172.01 2.444.048 3.297.04.852.174 1.433.372 1.942.205.526.478.972.923 1.417.444.445.89.719 1.416.923.51.198 1.09.333 1.942.372C5.555 15.99 5.827 16 8 16s2.444-.01 3.298-.048c.851-.04 1.434-.174 1.943-.372a3.916 3.916 0 0 0 1.416-.923c.445-.445.718-.891.923-1.417.197-.509.332-1.09.372-1.942C15.99 10.445 16 10.173 16 8s-.01-2.445-.048-3.299c-.04-.851-.175-1.433-.372-1.941a3.926 3.926 0 0 0-.923-1.417A3.911 3.911 0 0 0 13.24.42c-.51-.198-1.092-.333-1.943-.372C10.443.01 10.172 0 8 0zm0 1.442c2.136 0 2.389.007 3.232.046.78.035 1.204.166 1.486.275.373.145.64.319.92.599.28.28.453.546.598.92.11.282.24.705.275 1.485.039.843.047 1.096.047 3.231s-.008 2.389-.047 3.232c-.035.78-.166 1.203-.275 1.485a2.47 2.47 0 0 1-.599.919c-.28.28-.546.453-.92.598-.28.11-.704.24-1.485.276-.843.038-1.096.047-3.232.047s-2.39-.009-3.233-.047c-.78-.036-1.203-.166-1.485-.276a2.478 2.478 0 0 1-.92-.598 2.48 2.48 0 0 1-.6-.92c-.109-.281-.24-.705-.275-1.485-.038-.843-.046-1.096-.046-3.231 0-2.136.008-2.388.046-3.231.036-.78.166-1.204.276-1.486.145-.373.319-.64.599-.92.28-.28.546-.453.92-.598.282-.11.705-.24 1.485-.276.843-.038 1.096-.047 3.232-.047zM8 4.908a3.092 3.092 0 1 0 0 6.184 3.092 3.092 0 0 0 0-6.184zm0 5.165a2.072 2.072 0 1 1 0-4.144 2.072 2.072 0 0 1 0 4.144zM12.636 2.886a.96.96 0 1 0 0 1.92.96.96 0 0 0 0-1.92z"/></svg></a>
+        </div>
+        <div class="footer-copyright">
+            &copy; <span id="current-year"></span> Jethro Roland Danocup. All Rights Reserved.
+        </div>
     </footer>
 
     <script>
         document.getElementById('current-year').textContent = new Date().getFullYear();
-    </script>
-    <script>
+        
         const revealElements = document.querySelectorAll('.reveal');
         const revealOnScroll = new IntersectionObserver((entries, observer) => {
             entries.forEach(entry => {

@@ -8,7 +8,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Merriweather&display=swap" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;400;600&display=swap" rel="stylesheet">
     <title>Jethro Roland Danocup - Home</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <style>
@@ -17,6 +17,8 @@
             --secondary-accent: #00e5ff;
             --text-primary: #e0e0e0;
             --text-secondary: antiquewhite;
+            --glass-bg: rgba(255, 255, 255, 0.05);
+            --glass-border: 1px solid rgba(255, 255, 255, 0.1);
         }
         html {
         background: #0f0c29; /* Fallback background */
@@ -25,6 +27,7 @@
         }
         body{
         margin: 0;
+        font-family: 'Poppins', sans-serif;
         display: flex;
         flex-direction: column;
         min-height: 100vh;
@@ -40,12 +43,14 @@
         }
         main {
             flex-grow: 1; 
-            padding-top: 5vh;
-            position: relative; /* Needed for content to sit above canvas */
+            display: flex;
+            flex-direction: column;
+            position: relative; 
             z-index: 1;
         }
         p {
             line-height: 1.7;
+            font-weight: 200;
         }
         #name{
         color: var(--text-secondary);
@@ -61,7 +66,7 @@
         display: flex;
         flex-direction: row;
         margin-left: 5.5vw;
-        align-items: baseline;
+        align-items: center;
         justify-content: space-between; 
         padding-right: 5.5vw;
         }
@@ -101,10 +106,11 @@
             transform: scaleX(1);
             transform-origin: bottom left;
         }
-        h2 {
+        .section-heading {
             font-family: 'Merriweather', serif;
-            font-size: clamp(1.75rem, 3.5vw, 2.5rem);
-            margin-bottom: 1.5rem;
+            font-size: clamp(2rem, 5vw, 3rem);
+            margin-bottom: 2rem;
+            text-align: center;
             background: linear-gradient(90deg, var(--secondary-accent), var(--text-secondary), var(--secondary-accent));
             background-size: 200% auto;
             background-clip: text;
@@ -112,16 +118,27 @@
             -webkit-text-fill-color: transparent;
             animation: gradient-shine 5s linear infinite;
         }
+        
         .Hero-section {
             display: flex;
-            justify-content: center;
+            justify-content: space-between; 
             align-items: center;
-            text-align: center;
+            text-align: left; 
             flex-grow: 1;
+            padding: 5vh 5.5vw; 
+            box-sizing: border-box;
+            min-height: 80vh; 
         }
+        .hero-text-container {
+            flex-basis: 50%; 
+            max-width: 50%;
+            min-width: 300px;
+        }
+        
         #Headline {
             font-family: 'Merriweather', serif;
-            font-size: clamp(3rem, 8vw, 6rem);
+            font-size: clamp(3rem, 7vw, 5rem); 
+            margin-top: 0;
             margin-bottom: 1rem;
             background: linear-gradient(90deg, var(--secondary-accent), var(--text-secondary), var(--secondary-accent));
             background-size: 200% auto;
@@ -133,6 +150,7 @@
         #sub-heading {
             font-family: 'Poppins', sans-serif;
             font-size: clamp(1rem, 2vw, 1.5rem);
+            font-weight: 200;
         }
         #sub-heading .cursor {
             display: inline-block;
@@ -141,15 +159,21 @@
             width: 3px;
             animation: blink 0.7s infinite;
         }
-        footer{
-        font-family: 'Merriweather', serif;
-        text-align: center;
-        padding: 2vh 0;
-        width: 100%;
-        font-size: clamp(0.8rem, 1.5vw, 1rem);
-        position: relative; /* Keep footer above canvas */
-        z-index: 1;
+        
+        #constellation-container {
+            flex-basis: 50%;
+            max-width: 50%;
+            height: 400px;
+            position: relative;
         }
+        #constellation-canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
         #particle-canvas {
             position: fixed;
             top: 0;
@@ -173,14 +197,240 @@
         .reveal {
             opacity: 0;
             transform: translateY(50px);
-            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+            transition: opacity 1s ease-out, transform 1s ease-out;
         }
         .reveal.active {
             opacity: 1;
             transform: translateY(0);
         }
+        
+        .content-section {
+            padding: 6rem 5.5vw;
+        }
+
+        .centered-text {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: transparent;
+            border: 2px solid var(--secondary-accent);
+            color: var(--secondary-accent);
+            padding: 12px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            margin-top: 1.5rem;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+        .cta-button:hover {
+            background-color: var(--secondary-accent);
+            color: #0f0c29;
+        }
+
+        .glass-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-radius: 20px;
+            border: var(--glass-border);
+            padding: 2rem;
+        }
+
+        #featured-projects .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        .project-card {
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+        .project-card img {
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 1.5rem;
+        }
+        .project-card h3 {
+            font-family: 'Merriweather', serif;
+            color: var(--text-secondary);
+            margin: 0 0 0.5rem 0;
+        }
+        .project-card .tech-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+        .project-card .tech-tags span {
+            background: rgba(0, 229, 255, 0.1);
+            color: var(--secondary-accent);
+            padding: 0.25rem 0.75rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        #skills .skills-grid {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+            max-width: 900px;
+            margin: 3rem auto 0 auto;
+        }
+        .skill-item {
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+        .skill-item:hover {
+            transform: scale(1.1);
+        }
+        .skill-item svg {
+            width: 64px;
+            height: 64px;
+            color: var(--text-secondary);
+        }
+        .skill-item p {
+            margin-top: 0.5rem;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        #achievements .achievements-list {
+            max-width: 800px;
+            margin: 3rem auto 0 auto;
+            text-align: center;
+        }
+        .achievement-item {
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        .achievement-item h3 {
+            margin: 0;
+            color: var(--secondary-accent);
+            font-family: 'Merriweather', serif;
+        }
+        
+        footer {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            padding: 2rem 1rem;
+            text-align: center;
+            width: 100%;
+            position: relative;
+            z-index: 1;
+            box-sizing: border-box;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .social-icons {
+            margin-bottom: 1rem;
+        }
+        .social-icons a {
+            color: var(--text-secondary);
+            margin: 0 15px;
+            text-decoration: none;
+            transition: color 0.3s ease, transform 0.3s ease;
+            display: inline-block;
+        }
+        .social-icons a:hover {
+            color: var(--secondary-accent);
+            transform: translateY(-5px);
+        }
+        .social-icons svg {
+            width: 28px;
+            height: 28px;
+        }
+        .footer-copyright {
+            font-family: 'Merriweather', serif;
+            font-size: clamp(0.8rem, 1.5vw, 1rem);
+            color: var(--text-primary);
+        }
+        
+        h2 {
+        font-family: 'Merriweather', serif;
+        font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+        margin-bottom: 1.5rem;
+        background: linear-gradient(90deg, var(--secondary-accent), var(--text-secondary), var(--secondary-accent));
+        background-size: 200% auto;
+        background-clip: text;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        animation: gradient-shine 5s linear infinite;
+    }
+        /* --- NEW MUSIC PLAYER STYLES --- */
+        #music-control {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 9999;
+            width: 50px;
+            height: 50px;
+            background: var(--glass-bg);
+            border: var(--glass-border);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            transition: transform 0.3s ease;
+        }
+        #music-control:hover {
+            transform: scale(1.1);
+        }
+        #music-control svg {
+            width: 24px;
+            height: 24px;
+            color: var(--text-secondary);
+        }
+        #music-control.playing #play-icon {
+            display: none;
+        }
+        #music-control.playing #pause-icon {
+            display: block;
+        }
+        /* --- END MUSIC PLAYER STYLES --- */
+
         @keyframes gradient-shine { to { background-position: 200% center; } }
         @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+
+        @media (max-width: 900px) {
+            .Hero-section {
+                justify-content: center; 
+                text-align: center;
+                flex-direction: column;
+                padding-top: 2rem;
+                min-height: 60vh;
+            }
+            .hero-text-container {
+                max-width: 100%;
+                flex-basis: auto;
+                margin-bottom: 2rem;
+            }
+            #constellation-container {
+                display: block; 
+                max-width: 100%;
+                width: 100%;
+                height: 300px; 
+                flex-basis: auto;
+            }
+        }
 
         @media (max-width: 768px) {
             .nav-bar-list {
@@ -188,7 +438,6 @@
                 position: fixed; 
                 top: 0; 
                 right: -100%;
-                /* UPDATED: Darker, less transparent background */
                 background: rgba(15, 12, 41, 0.8); 
                 backdrop-filter: blur(10px);
                 width: 100%; 
@@ -206,7 +455,7 @@
                 display: block; 
                 cursor: pointer;
                 z-index: 1001;
-                margin-left: auto; /* Pushes the icon to the right */
+                margin-left: auto;
             }
             .nav-toggle:checked ~ .nav-bar-list { 
                 display: flex;
@@ -240,19 +489,131 @@
     </header>
 
     <main>
-        <section class="Hero-section reveal">
-            <div class="Hero outside">
-                <div class="Hero inside">
-                <div class="Headline"><h1 id="Headline">WELCOME</h1></div>
+        <section class="Hero-section">
+            <div class="hero-text-container reveal">
+                <h1 id="Headline">WELCOME</h1>
                 <div class="sub-heading"><p id="sub-heading"></p></div>
+            </div>
+            <div id="constellation-container" class="reveal">
+                <canvas id="constellation-canvas"></canvas>
+            </div>
+        </section>
+
+        <section id="about-preview" class="content-section reveal">
+            <div class="centered-text glass-card">
+                <h2 class="section-heading">Hello, I'm Jethro.</h2>
+                <p>
+                    I am a passionate Computer Science student with a specialization in Artificial Intelligence. I thrive on turning complex problems into elegant, user-friendly applications. From web and mobile development to exploring the depths of AI, I am driven by a curiosity to learn and create.
+                </p>
+                <a href="./public/about.html" class="cta-button">More About Me</a>
+            </div>
+        </section>
+
+        <section id="featured-projects" class="content-section reveal">
+            <h2 class="section-heading">Featured Projects</h2>
+            <div class="projects-grid">
+                <article class="project-card reveal glass-card">
+                    <img src="./projects/thumbnails/qrderup.png" alt="QrderUP Project Thumbnail">
+                    <div class="project-content">
+                        <h3>QrderUP</h3>
+                        <p>A collaborative project where I engineered the back-end system, connecting the front-end interface with a robust database to streamline the ordering process.</p>
+                        <div class="tech-tags">
+                            <span>Back-End</span>
+                            <span>Database</span>
+                            <span>System Integration</span>
+                        </div>
+                    </div>
+                </article>
+                <article class="project-card reveal glass-card">
+                    <img src="./projects/thumbnails/unravelme.png" alt="UnravelME Project Thumbnail">
+                    <div class="project-content">
+                        <h3>UnravelME</h3>
+                        <p>As the sole developer for this team project, I was responsible for coding the entire application based on the team's design and specifications, bringing our shared vision to life.</p>
+                         <div class="tech-tags">
+                            <span>Full-Stack</span>
+                            <span>UI/UX</span>
+                            <span>Solo Developer</span>
+                        </div>
+                    </div>
+                </article>
+            </div>
+            <div style="text-align: center;">
+                 <a href="./public/my-projects.html" class="cta-button">View All Projects</a>
+            </div>
+        </section>
+
+        <section id="skills" class="content-section reveal">
+            <h2 class="section-heading">My Tech Stack</h2>
+            <div class="skills-grid">
+                <div class="skill-item">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M3 3h18v18H3V3zm2 2v14h14V5H5zm2 2h2v2H7V7zm4 0h2v2h-2V7zm4 0h2v2h-2V7zm-8 4h2v2H7v-2zm4 0h2v2h-2v-2zm4 0h2v2h-2v-2zm-8 4h2v2H7v-2zm4 0h2v2h-2v-2z"/></svg>
+                    <p>HTML</p>
+                </div>
+                <div class="skill-item">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M3 3h18v18H3V3zm2 2v14h14V5H5zm2 2h10v2H7V7zm0 4h10v2H7v-2zm0 4h10v2H7v-2z"/></svg>
+                    <p>CSS</p>
+                </div>
+                <div class="skill-item">
+                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M8 3v2H6v14h4v-2H8V5h2v14h4v-2h-2V5h2v14h4v2H8v-2h2V5H8V3zm10 0v18h-2V3h2z"/></svg>
+                    <p>JavaScript</p>
+                </div>
+                <div class="skill-item">
+                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 16H9v-6h2v6zm4 0h-2v-6h2v6zm-4-8h-2V8h2v2zm4 0h-2V8h2v2z"/></svg>
+                    <p>Python</p>
+                </div>
+                <div class="skill-item">
+                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg>
+                    <p>Java</p>
                 </div>
             </div>
         </section>
+
+        <section id="achievements" class="content-section reveal">
+             <h2 class="section-heading">Recent Achievements</h2>
+             <div class="achievements-list">
+                <div class="achievement-item glass-card reveal">
+                    <h3>KomSai Hack 2025 - 3rd Place</h3>
+                    <p>Recognized for developing an innovative solution under pressure in a competitive university-level hackathon.</p>
+                </div>
+                 <div class="achievement-item glass-card reveal">
+                    <h3>SIKAPTala 2025 National IT Competition - Top 10 Finalist</h3>
+                    <p>Advanced to the final round of a prestigious national competition, showcasing problem-solving and software development skills.</p>
+                </div>
+             </div>
+             <div style="text-align: center;">
+                 <a href="./public/achievements.html" class="cta-button">See All Awards</a>
+            </div>
+        </section>
+
+        <section id="contact-cta" class="content-section reveal">
+            <div class="centered-text">
+                <h2 class="section-heading">Have a project in mind?</h2>
+                <p>I'm always open to discussing new projects, creative ideas, or opportunities to be part of an ambitious vision. Let's build something amazing together.</p>
+                <a href="./public/contact.html" class="cta-button">Get In Touch</a>
+            </div>
+        </section>
+
     </main>
 
     <footer>
-        &copy; <span id="current-year"></span> Jethro Roland Danocup. All Rights Reserved.
+        <div class="social-icons">
+            <a href="https://github.com/JethroIsHere" target="_blank" aria-label="GitHub Profile"><svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg></a>
+            <a href="https://www.facebook.com/jethro.roland.danocup" target="_blank" aria-label="Facebook Profile"><svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16"><path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0 0 3.596 0 8.049c0 4.051 2.956 7.424 6.838 7.951v-5.625h-2.03V8.05H6.838V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.882-.527 6.75-3.901 6.75-7.951z"/></svg></a>
+            <a href="https://www.instagram.com/___ro__n_/?igsh=MWV2Nm1pdWdqazNraw%3D%3D&utm_source=qr#" target="_blank" aria-label="Instagram Profile"><svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16"><path d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.917 3.917 0 0 0-1.417.923A3.927 3.927 0 0 0 .42 2.76C.222 3.268.087 3.85.048 4.7.01 5.555 0 5.827 0 8.001c0 2.172.01 2.444.048 3.297.04.852.174 1.433.372 1.942.205.526.478.972.923 1.417.444.445.89.719 1.416.923.51.198 1.09.333 1.942.372C5.555 15.99 5.827 16 8 16s2.444-.01 3.298-.048c.851-.04 1.434-.174 1.943-.372a3.916 3.916 0 0 0 1.416-.923c.445-.445.718-.891.923-1.417.197-.509.332-1.09.372-1.942C15.99 10.445 16 10.173 16 8s-.01-2.445-.048-3.299c-.04-.851-.175-1.433-.372-1.941a3.926 3.926 0 0 0-.923-1.417A3.911 3.911 0 0 0 13.24.42c-.51-.198-1.092-.333-1.943-.372C10.443.01 10.172 0 8 0zm0 1.442c2.136 0 2.389.007 3.232.046.78.035 1.204.166 1.486.275.373.145.64.319.92.599.28.28.453.546.598.92.11.282.24.705.275 1.485.039.843.047 1.096.047 3.231s-.008 2.389-.047 3.232c-.035.78-.166 1.203-.275 1.485a2.47 2.47 0 0 1-.599.919c-.28.28-.546.453-.92.598-.28.11-.704.24-1.485.276-.843.038-1.096.047-3.232.047s-2.39-.009-3.233-.047c-.78-.036-1.203-.166-1.485-.276a2.478 2.478 0 0 1-.92-.598 2.48 2.48 0 0 1-.6-.92c-.109-.281-.24-.705-.275-1.485-.038-.843-.046-1.096-.046-3.231 0-2.136.008-2.388.046-3.231.036-.78.166-1.204.276-1.486.145-.373.319-.64.599-.92.28-.28.546-.453.92-.598.282-.11.705-.24 1.485-.276.843-.038 1.096-.047 3.232-.047zM8 4.908a3.092 3.092 0 1 0 0 6.184 3.092 3.092 0 0 0 0-6.184zm0 5.165a2.072 2.072 0 1 1 0-4.144 2.072 2.072 0 0 1 0 4.144zM12.636 2.886a.96.96 0 1 0 0 1.92.96.96 0 0 0 0-1.92z"/></svg></a>
+        </div>
+        <div class="footer-copyright">
+            &copy; <span id="current-year"></span> Jethro Roland Danocup. All Rights Reserved.
+        </div>
     </footer>
+
+    <audio id="background-music" loop>
+        <source src="./assets/music/1-05 Littleroot Town.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+    <div id="music-control" class="reveal">
+        <svg id="play-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+        <svg id="pause-icon" style="display:none;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
+    </div>
 
     <script>
         // --- DYNAMIC YEAR & SCROLL ANIMATION ---
@@ -308,10 +669,155 @@
             renderer.render(scene, camera);
         };
         animate();
+        
         window.addEventListener('resize', () => {
             renderer.setSize(window.innerWidth, window.innerHeight);
             camera.aspect = window.innerWidth / window.innerHeight;
             camera.updateProjectionMatrix();
+        });
+
+        // --- CONSTELLATION SCRIPT ---
+        const canvas = document.getElementById('constellation-canvas');
+        const ctx = canvas.getContext('2d');
+        let stars = [];
+        let animationFrameId;
+        let lineDrawProgress = 0;
+
+        const starData = [
+            { x: 0.25, y: 0.30, s: 2.3 }, { x: 0.20, y: 0.45, s: 2.5 }, { x: 0.25, y: 0.60, s: 2.3 }, 
+            { x: 0.35, y: 0.55, s: 2.0 }, { x: 0.32, y: 0.40, s: 2.2 }, { x: 0.40, y: 0.48, s: 2.0 }, 
+            { x: 0.50, y: 0.52, s: 2.0 }, { x: 0.60, y: 0.50, s: 2.0 }, { x: 0.70, y: 0.35, s: 2.3 }, 
+            { x: 0.80, y: 0.45, s: 2.5 }, { x: 0.75, y: 0.60, s: 2.3 }, { x: 0.65, y: 0.58, s: 2.0 }, 
+            { x: 0.63, y: 0.42, s: 2.2 }
+        ];
+
+        const connections = [
+            [0,1],[1,2],[2,3],[3,4],[4,0], [2,5],[5,6],[6,7],[7,10], 
+            [8,9],[9,10],[10,11],[11,12],[12,8]
+        ];
+
+        function setupConstellation() {
+            if (animationFrameId) cancelAnimationFrame(animationFrameId);
+            const container = document.getElementById('constellation-container');
+            if (!container) return;
+
+            const dpr = window.devicePixelRatio || 1;
+            canvas.width = container.offsetWidth * dpr;
+            canvas.height = container.offsetHeight * dpr;
+            ctx.scale(dpr, dpr);
+            stars = [];
+
+            starData.forEach(star => {
+                stars.push({
+                    x: star.x * container.offsetWidth,
+                    y: star.y * container.offsetHeight,
+                    radius: star.s,
+                    originalRadius: star.s,
+                    phase: Math.random() * Math.PI * 2
+                });
+            });
+            lineDrawProgress = 0;
+            animateConstellation();
+        }
+
+        function animateConstellation() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            if (lineDrawProgress < 1) lineDrawProgress += 0.01;
+            ctx.strokeStyle = 'rgba(250, 235, 215, 0.3)';
+            ctx.lineWidth = 1;
+            connections.forEach(conn => {
+                const start = stars[conn[0]];
+                const end = stars[conn[1]];
+                const targetX = start.x + (end.x - start.x) * lineDrawProgress;
+                const targetY = start.y + (end.y - start.y) * lineDrawProgress;
+                ctx.beginPath();
+                ctx.moveTo(start.x, start.y);
+                ctx.lineTo(targetX, targetY);
+                ctx.stroke();
+            });
+            
+            stars.forEach(star => {
+                star.phase += 0.02;
+                star.radius = star.originalRadius + Math.sin(star.phase) * 0.4;
+                ctx.beginPath();
+                ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
+                ctx.fillStyle = `rgba(250, 235, 215, ${0.5 + Math.sin(star.phase) * 0.5})`;
+                ctx.shadowColor = 'antiquewhite';
+                ctx.shadowBlur = 8;
+                ctx.fill();
+            });
+            
+            animationFrameId = requestAnimationFrame(animateConstellation);
+        }
+
+        let resizeTimer;
+        window.addEventListener('resize', () => {
+            clearTimeout(resizeTimer);
+            resizeTimer = setTimeout(setupConstellation, 250);
+        });
+
+        const heroObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                   setTimeout(setupConstellation, 300); 
+                   heroObserver.unobserve(entry.target);
+                }
+            });
+        });
+        heroObserver.observe(document.querySelector('.Hero-section'));
+        
+        // --- MUSIC PLAYER SCRIPT ---
+        document.addEventListener('DOMContentLoaded', () => {
+            const music = document.getElementById('background-music');
+            const musicControl = document.getElementById('music-control');
+
+            if (music && musicControl) {
+                const playIcon = document.getElementById('play-icon');
+                const pauseIcon = document.getElementById('pause-icon');
+
+                const togglePlay = () => {
+                    if (music.paused) {
+                        music.play().catch(error => console.log("Autoplay was prevented:", error));
+                    } else {
+                        music.pause();
+                    }
+                };
+                
+                music.onplay = () => {
+                    musicControl.classList.add('playing');
+                    localStorage.setItem('musicState', 'playing');
+                };
+
+                music.onpause = () => {
+                    musicControl.classList.remove('playing');
+                    localStorage.setItem('musicState', 'paused');
+                };
+
+                musicControl.addEventListener('click', togglePlay);
+
+                // Check state on page load
+                const musicState = localStorage.getItem('musicState');
+                const musicTime = localStorage.getItem('musicTime');
+
+                if (musicTime) {
+                    music.currentTime = parseFloat(musicTime);
+                }
+
+                if (musicState === 'playing') {
+                     music.play().catch(error => {
+                        // Browser prevented autoplay, wait for user interaction
+                        console.log("Autoplay was prevented. User must click play.");
+                        localStorage.setItem('musicState', 'paused'); // Reset state
+                    });
+                }
+            }
+
+            // Save current time before leaving the page
+            window.addEventListener('beforeunload', () => {
+                if(music) {
+                    localStorage.setItem('musicTime', music.currentTime);
+                }
+            });
         });
     </script>
 </body>
