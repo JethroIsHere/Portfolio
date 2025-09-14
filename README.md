@@ -1,7 +1,7 @@
 # Portfolio
 
-Jethro Roland Danocup - Personal Portfolio Website This repository
-contains the source code for my personal portfolio website. It's a fully
+Jethro Roland Danocup - Personal Portfolio Website 
+This repository contains the source code for my personal portfolio website. It's a fully
 responsive, multi-page site designed to showcase my skills, projects,
 and achievements as a Computer Science student and aspiring developer.
 
