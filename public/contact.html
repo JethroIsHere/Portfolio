@@ -20,19 +20,19 @@
         --glass-border: 1px solid rgba(255, 255, 255, 0.1);
     }
     html {
-    background: url('../assets/images/Background4.png') no-repeat center center fixed;
-    background-size: cover;
-    width: 100vw;
-    height: 100vh;
-    overflow-x: hidden;
-    color: var(--text-primary);
+        background: url('../assets/images/Background4.png') no-repeat center center fixed;
+        background-size: cover;
+        width: 100vw;
+        height: 100vh;
+        overflow-x: hidden;
+        color: var(--text-primary);
     }
     body{
-    margin: 0;
-    font-family: 'Poppins', sans-serif;
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
+        margin: 0;
+        font-family: 'Poppins', sans-serif;
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
     }
     header {
         position: sticky;
@@ -47,7 +47,7 @@
         flex-grow: 1;
         display: flex;
         flex-direction: column;
-        align-items: center; /* This line was added for perfect centering */
+        align-items: center;
         justify-content: center;
         padding: 5vh 2rem;
     }
@@ -56,43 +56,49 @@
         font-weight: 200;
     }
     #name{
-    color: var(--text-secondary);
-    font-family: 'Merriweather', serif;
-    font-size: clamp(1.25rem, 2vw, 1.75rem);
-    margin-top: 0px;
+        color: var(--text-secondary);
+        font-family: 'Merriweather', serif;
+        font-size: clamp(1.25rem, 2vw, 1.75rem);
+        margin-top: 0px;
     }
-    .nav-div{
+    .nav-div {
     padding: 3vh 0;
     }
-    .nav-bar{
-    position: relative;
-    display: flex;
-    flex-direction: row;
-    margin-left: 5.5vw;
-    align-items: center;
-    justify-content: space-between; 
-    padding-right: 5.5vw;
+
+    .nav-bar {
+        position: relative;
+        display: flex;
+        flex-direction: row;
+        margin-left: 5.5vw;
+        align-items: center;
+        justify-content: space-between;
+        padding-right: 5.5vw;
     }
-    .nav-bar-list{
-    display: grid;
-    grid-template-columns:  9vw 9vw 9vw 10vw 10vw 10vw;
-    margin: 0;
-    padding: 0;
-    list-style-type: none;
+
+    .nav-bar-list {
+        display: grid;
+        grid-template-columns: repeat(6, auto);
+        gap: 1.5rem;
+        margin: 0;
+        padding: 0;
+        list-style-type: none;
     }
-    .nav-list{
-    font-family: 'Poppins', sans-serif;
-    font-weight: bold;
-    display: flex;
-    list-style-type: none;
+
+    .nav-list {
+        font-family: 'Poppins', sans-serif;
+        font-weight: bold;
+        display: flex;
+        list-style-type: none;
     }
-    .nav{
-    font-size: clamp(0.9rem, 1.7vw, 1.25rem);
-    color: var(--text-secondary);
-    text-decoration: none;
-    position: relative;
-    padding-bottom: 5px;
+
+    .nav {
+        font-size: clamp(0.9rem, 1.7vw, 1.25rem);
+        color: var(--text-secondary);
+        text-decoration: none;
+        position: relative;
+        padding-bottom: 5px;
     }
+
     .nav::after {
         content: '';
         position: absolute;
@@ -105,6 +111,7 @@
         transform-origin: bottom right;
         transition: transform 0.3s ease-out;
     }
+
     .nav:hover::after {
         transform: scaleX(1);
         transform-origin: bottom left;
@@ -302,7 +309,7 @@
     <header>
         <div class="nav-div">
             <nav class="nav-bar">
-                <h2 id="name">Jethro Roland Danocup</h2>
+                <h2 id="name" class="section-heading">Jethro Roland Danocup</h2>
                 <input type="checkbox" id="nav-toggle" class="nav-toggle">
                 <label for="nav-toggle" class="nav-toggle-label"><span></span></label>
                 <ul class="nav-bar-list">
@@ -325,7 +332,7 @@
             </div>
             <div class="contact-container glass-card reveal">
                 <div class="contact-info">
-                    <h2 class="section-heading" style="text-align: left; margin-bottom: 1rem; font-size: clamp(1.75rem, 3.5vw, 2.5rem);">Get in Touch</h2>
+                    <h2 class="section-heading">Get in Touch</h2>
                     
                     <a href="mailto:jethroroland.danocup@wvsu.edu.ph" class="info-item">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16"><path d="M.05 3.555A2 2 0 0 1 2 2h12a2 2 0 0 1 1.95 1.555L8 8.414.05 3.555zM0 4.697v7.104l5.803-3.558L0 4.697zM6.761 8.83l-6.57 4.027A2 2 0 0 0 2 14h12a2 2 0 0 0 1.808-1.144l-6.57-4.027L8 9.586l-1.239-.757zm3.436-.586L16 11.801V4.697l-5.803 3.546z"/></svg>
@@ -348,10 +355,9 @@
                 </div>
                 <form class="contact-form" action="https://api.web3forms.com/submit" method="POST">
                     <input type="hidden" name="access_key" value="f33a73ee-f553-4670-bde4-14a8496e87ae">
-
                     <input type="hidden" name="subject" value="New Contact Form Submission from Portfolio">
                     <input type="hidden" name="from_name" value="Portfolio Visitor">
-                    <!-- <input type="hidden" name="redirect" value="https://jethroishere.github.io/portfolio-danocup/public/success.html"> -->
+                    <input type="hidden" name="redirect" value="https://jethroishere.github.io/portfolio-danocup/public/success.html">
                     <div class="form-group">
                         <input type="text" name="name" placeholder="Your Name" required>
                     </div>

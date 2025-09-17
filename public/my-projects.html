@@ -10,289 +10,9 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../styles.css">
     <style>
-    :root {
-        --primary-accent: #9397E9;
-        --secondary-accent: #00e5ff;
-        --text-primary: #e0e0e0;
-        --text-secondary: antiquewhite;
-        --glass-bg: rgba(255, 255, 255, 0.05);
-        --glass-border: 1px solid rgba(255, 255, 255, 0.1);
-    }
-    html {
-    background: url('../assets/images/Background5.png') no-repeat center center fixed;
-    background-size: cover;
-    width: 100vw;
-    height: 100vh;
-    overflow-x: hidden;
-    color: var(--text-primary);
-    }
-    body{
-    margin: 0;
-    font-family: 'Poppins', sans-serif;
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-    }
-    header {
-        position: sticky;
-        top: 0;
-        z-index: 100;
-        background: rgba(255, 255, 255, 0.1);
-        backdrop-filter: blur(10px);
-        -webkit-backdrop-filter: blur(10px);
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    }
-    main {
-        flex-grow: 1; 
-        padding: 5vh 0;
-    }
-    p {
-        line-height: 1.7;
-        font-weight: 200;
-    }
-    #name{
-    color: var(--text-secondary);
-    font-family: 'Merriweather', serif;
-    font-size: clamp(1.25rem, 2vw, 1.75rem);
-    margin-top: 0px;
-    }
-    .nav-div{
-    padding: 3vh 0;
-    }
-    .nav-bar{
-    position: relative;
-    display: flex;
-    flex-direction: row;
-    margin-left: 5.5vw;
-    align-items: center;
-    justify-content: space-between; 
-    padding-right: 5.5vw;
-    }
-    .nav-bar-list{
-        display: grid;
-        grid-template-columns: 9vw 9vw 9vw 10vw 10vw 10vw;
-        margin: 0;
-        padding: 0;
-        list-style-type: none;
-    }
-    .nav-list{
-    font-family: 'Poppins', sans-serif;
-    font-weight: bold;
-    display: flex;
-    list-style-type: none;
-    }
-    .nav{
-    font-size: clamp(0.9rem, 1.7vw, 1.25rem);
-    color: var(--text-secondary);
-    text-decoration: none;
-    position: relative;
-    padding-bottom: 5px;
-    }
-    .nav::after {
-        content: '';
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        width: 100%;
-        height: 2px;
-        background-color: var(--secondary-accent);
-        transform: scaleX(0);
-        transform-origin: bottom right;
-        transition: transform 0.3s ease-out;
-    }
-    .nav:hover::after {
-        transform: scaleX(1);
-        transform-origin: bottom left;
-    }
-    .section-heading {
-        font-family: 'Merriweather', serif;
-        font-size: clamp(2rem, 5vw, 3rem);
-        margin-bottom: 2rem;
-        text-align: center;
-        background: linear-gradient(90deg, var(--secondary-accent), var(--text-secondary), var(--secondary-accent));
-        background-size: 200% auto;
-        background-clip: text;
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        animation: gradient-shine 5s linear infinite;
-    }
-    .content-section {
-        padding: 2rem 5.5vw;
-        margin: 0 auto 2rem auto;
-        max-width: 1400px;
-    }
-    .projects-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-        gap: 2rem;
-    }
-    .project-card {
-        background: var(--glass-bg);
-        border: var(--glass-border);
-        border-radius: 20px;
-        overflow: hidden;
-        display: flex;
-        flex-direction: column;
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-    .project-card:hover {
-        transform: translateY(-10px);
-        box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-    }
-    .project-card img {
-        width: 100%;
-        aspect-ratio: 16 / 9;
-        object-fit: cover;
-    }
-    .project-content {
-        padding: 1.5rem;
-        display: flex;
-        flex-direction: column;
-        flex-grow: 1;
-    }
-    .project-content h3 {
-        font-family: 'Merriweather', serif;
-        color: var(--text-secondary);
-        margin: 0 0 0.5rem 0;
-    }
-    .project-content .description {
-        flex-grow: 1;
-        margin-bottom: 1rem;
-    }
-    .tech-tags {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 0.5rem;
-        margin-bottom: 1rem;
-    }
-    .tech-tags span {
-        background: rgba(0, 229, 255, 0.1);
-        color: var(--secondary-accent);
-        padding: 0.25rem 0.75rem;
-        border-radius: 15px;
-        font-size: 0.8rem;
-        font-weight: 600;
-    }
-    .project-link {
-        display: inline-flex;
-        align-items: center;
-        gap: 0.5rem;
-        color: var(--text-secondary);
-        text-decoration: none;
-        font-weight: bold;
-        margin-top: auto;
-        transition: color 0.3s ease;
-    }
-    .project-link:hover {
-        color: var(--secondary-accent);
-    }
-    .project-link svg {
-        width: 20px;
-        height: 20px;
-    }
-
-    .nav-toggle { display: none; }
-    .nav-toggle-label { display: none; }
-    .nav-toggle-label span,
-    .nav-toggle-label span::before,
-    .nav-toggle-label span::after {
-        display: block; background: var(--text-secondary); height: 3px;
-        width: 25px; border-radius: 2px; position: relative;
-    }
-    .nav-toggle-label span::before,
-    .nav-toggle-label span::after { content: ''; position: absolute; }
-    .nav-toggle-label span::before { bottom: 8px; }
-    .nav-toggle-label span::after { top: 8px; }
-
-    .reveal {
-        opacity: 0;
-        transform: translateY(50px);
-        transition: opacity 0.8s ease-out, transform 0.8s ease-out;
-    }
-    .reveal.active {
-        opacity: 1;
-        transform: translateY(0);
-    }
-    
-    footer {
-        background: rgba(255, 255, 255, 0.05);
-        backdrop-filter: blur(10px);
-        -webkit-backdrop-filter: blur(10px);
-        padding: 2rem 1rem;
-        text-align: center;
-        width: 100%;
-        position: relative;
-        z-index: 1;
-        box-sizing: border-box;
-        border-top: 1px solid rgba(255, 255, 255, 0.1);
-    }
-    .social-icons {
-        margin-bottom: 1rem;
-    }
-    .social-icons a {
-        color: var(--text-secondary);
-        margin: 0 15px;
-        text-decoration: none;
-        transition: color 0.3s ease, transform 0.3s ease;
-        display: inline-block;
-    }
-    .social-icons a:hover {
-        color: var(--secondary-accent);
-        transform: translateY(-5px);
-    }
-    .social-icons svg {
-        width: 28px;
-        height: 28px;
-    }
-    .footer-copyright {
-        font-family: 'Merriweather', serif;
-        font-size: clamp(0.8rem, 1.5vw, 1rem);
-        color: var(--text-primary);
-    }
-    h2 {
-        font-family: 'Merriweather', serif;
-        font-size: clamp(1.75rem, 3.5vw, 2.5rem);
-        margin-bottom: 1.5rem;
-        background: linear-gradient(90deg, var(--secondary-accent), var(--text-secondary), var(--secondary-accent));
-        background-size: 200% auto;
-        background-clip: text;
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        animation: gradient-shine 5s linear infinite;
-    }
-    @keyframes gradient-shine { to { background-position: 200% center; } }
-
-    @media (max-width: 768px) {
-        .nav-bar-list {
-            display: none;
-            position: fixed; 
-            top: 0; 
-            right: -100%;
-            background: rgba(15, 12, 41, 0.8);
-            backdrop-filter: blur(10px);
-            width: 100%; 
-            height: 100vh; 
-            flex-direction: column;
-            align-items: center; 
-            justify-content: center;
-            transition: right 0.3s ease-in-out;
-            z-index: 1000;
-        }
-        .nav-list { 
-            padding: 10px 0; 
-        }
-        .nav-toggle-label { 
-            display: block; 
-            cursor: pointer;
-            z-index: 1001;
-            margin-left: auto;
-        }
-        .nav-toggle:checked ~ .nav-bar-list { 
-            display: flex;
-            right: 0; 
-        }
-    }
+        html { background: url('../assets/images/Background5.png') no-repeat center center fixed; }
     </style>
 </head>
 <body>
@@ -301,9 +21,7 @@
             <nav class="nav-bar">
                 <h2 id="name">Jethro Roland Danocup</h2>
                 <input type="checkbox" id="nav-toggle" class="nav-toggle">
-                <label for="nav-toggle" class="nav-toggle-label">
-                    <span></span>
-                </label>
+                <label for="nav-toggle" class="nav-toggle-label"><span></span></label>
                 <ul class="nav-bar-list">
                     <li class="nav-list"><a class="nav" href="../index.html">HOME</a></li>
                     <li class="nav-list"><a class="nav" href="./resume.html">RESUME</a></li>
@@ -317,16 +35,15 @@
     </header>
 
     <main>
-
         <section class="content-section reveal">
-            <h2 class="section-heading" style="font-size: clamp(1.75rem, 4vw, 2.5rem);">Collaboration Projects</h2>
+            <h2 class="section-heading">Collaboration Projects</h2>
             <div class="projects-grid">
                 <article class="project-card reveal">
                     <img src="../projects/thumbnails/qrderup.png" alt="QrderUP">
                     <div class="project-content">
                         <h3>QrderUP</h3>
                         <p class="description"><strong>Role:</strong> Project Developer/Programmer<br>Coded the back end and connected the front-end with the database.</p>
-                        <div class="tech-tags"><span>Back-End</span><span>Database</span></div>
+                        <ul class="tech-tags"><li><span>Back-End</span></li><li><span>Database</span></li></ul>
                         <a href="https://github.com/JethroIsHere/QrderUP.git" target="_blank" class="project-link">
                             <span>View Project</span><svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"/></svg>
                         </a>
@@ -337,7 +54,7 @@
                     <div class="project-content">
                         <h3>UnravelME</h3>
                         <p class="description"><strong>Role:</strong> Project Developer/Programmer<br>Coded the entire project as discussed by the team, from concept to execution.</p>
-                        <div class="tech-tags"><span>Full-Stack</span><span>Solo Developer</span></div>
+                        <ul class="tech-tags"><li><span>Full-Stack</span></li><li><span>Solo Developer</span></li></ul>
                         <a href="https://github.com/JethroIsHere/UnravelMe.git" target="_blank" class="project-link">
                            <span>View Project</span><svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"/></svg>
                         </a>
@@ -348,7 +65,7 @@
                      <div class="project-content">
                         <h3>Panubli-on sang Walay Palad</h3>
                         <p class="description"><strong>Role:</strong> AI Tool Researcher & Film Director<br>Directed and generated a short film for SineAI using various AI tools.</p>
-                        <div class="tech-tags"><span>AI Tools</span><span>Directing</span><span>Prompt Engineering</span></div>
+                        <ul class="tech-tags"><li><span>AI Tools</span></li><li><span>Directing</span></li><li><span>Prompt Engineering</span></li></ul>
                         <a href="https://aifest.ph/sineai-movies/panubli-on-sang-walay-palad/" target="_blank" class="project-link">
                            <span>View Project</span><svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"/></svg>
                         </a>
@@ -359,7 +76,7 @@
                      <div class="project-content">
                         <h3>Laran</h3>
                         <p class="description"><strong>Role:</strong> Researcher & Writer<br>Aided in documentation and wireframing, and handled Q&A during the project pitch.</p>
-                        <div class="tech-tags"><span>Figma</span><span>Research</span><span>Documentation</span></div>
+                        <ul class="tech-tags"><li><span>Figma</span></li><li><span>Research</span></li><li><span>Documentation</span></li></ul>
                         <a href="https://www.figma.com/proto/rHhcWkfjRJ1yuTwID5SC1O/SIKAPTala-Mockup?node-id=130-656&t=7clMFAOs0eiiOnbg-1" target="_blank" class="project-link">
                            <span>View Project</span><svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"/></svg>
                         </a>
@@ -370,7 +87,7 @@
                      <div class="project-content">
                         <h3>Habiwork</h3>
                         <p class="description"><strong>Role:</strong> Researcher & Back-up Developer<br>Contributed to project documentation and the design of wireframes.</p>
-                        <div class="tech-tags"><span>Figma</span><span>UX/UI Design</span></div>
+                        <ul class="tech-tags"><li><span>Figma</span></li><li><span>UX/UI Design</span></li></ul>
                         <a href="https://www.figma.com/proto/oLUxMRVk3BaYRbdXP3F73s/AIDEAS?node-id=0-1&t=teMEcQWIrT8X5ySj-1" target="_blank" class="project-link">
                            <span>View Project</span><svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"/></svg>
                         </a>
@@ -381,7 +98,7 @@
                      <div class="project-content">
                         <h3>Sibikosaccion</h3>
                         <p class="description"><strong>Role:</strong> Researcher & Writer<br>Assisted in the game's documentation and managed the Q&A portion of the pitch.</p>
-                        <div class="tech-tags"><span>Game Design</span><span>Documentation</span></div>
+                        <ul class="tech-tags"><li><span>Game Design</span></li><li><span>Documentation</span></li></ul>
                         <a href="https://www.figma.com/proto/rHhcWkfjRJ1yuTwID5SC1O/SIKAPTala-Mockup?node-id=0-1&t=VuZV0jZVSgxBfrHe-1" target="_blank" class="project-link">
                            <span>View Project</span><svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"/></svg>
                         </a>
@@ -391,53 +108,53 @@
         </section>
 
         <section class="content-section reveal">
-            <h2 class="section-heading" style="font-size: clamp(1.75rem, 4vw, 2.5rem);">Web & Application Projects</h2>
+            <h2 class="section-heading">Web & Application Projects</h2>
             <div class="projects-grid">
                 <article class="project-card reveal">
                     <img src="../assets/images/Project-3.png" alt="Personal Portfolio">
-                    <div class="project-content"><h3>Personal Portfolio</h3><div class="tech-tags"><span>HTML</span><span>CSS</span><span>JavaScript</span></div><a href="../index.html" target="_blank" class="project-link"><span>View Project</span><svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"/></svg></a></div>
+                    <div class="project-content"><h3>Personal Portfolio</h3><ul class="tech-tags"><li><span>HTML</span></li><li><span>CSS</span></li><li><span>JavaScript</span></li></ul><a href="../index.html" target="_blank" class="project-link"><span>View Project</span><svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"/></svg></a></div>
                 </article>
                 <article class="project-card reveal">
                     <img src="../projects/thumbnails/quiz app.png" alt="Quiz App">
-                    <div class="project-content"><h3>Quiz App</h3><div class="tech-tags"><span>JavaScript</span><span>API</span></div><a href="#" target="_blank" class="project-link"><span>View Project</span><svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"/></svg></a></div>
+                    <div class="project-content"><h3>Quiz App</h3><ul class="tech-tags"><li><span>JavaScript</span></li><li><span>API</span></li></ul><a href="#" target="_blank" class="project-link"><span>View Project</span><svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"/></svg></a></div>
                 </article>
                 <article class="project-card reveal">
                     <img src="../projects/thumbnails/languageflashcard.png" alt="Language Flash Card App">
-                    <div class="project-content"><h3>Language Flash Card App</h3><div class="tech-tags"><span>Python</span><span>Tkinter</span></div><a href="#" target="_blank" class="project-link"><span>View Project</span><svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"/></svg></a></div>
+                    <div class="project-content"><h3>Language Flash Card App</h3><ul class="tech-tags"><li><span>Python</span></li><li><span>Tkinter</span></li></ul><a href="#" target="_blank" class="project-link"><span>View Project</span><svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"/></svg></a></div>
                 </article>
                 <article class="project-card reveal">
                     <img src="../projects/thumbnails/blog.png" alt="Blog">
-                    <div class="project-content"><h3>Blog Website</h3><div class="tech-tags"><span>HTML</span><span>CSS</span></div><a href="#" target="_blank" class="project-link"><span>View Project</span><svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"/></svg></a></div>
+                    <div class="project-content"><h3>Blog Website</h3><ul class="tech-tags"><li><span>HTML</span></li><li><span>CSS</span></li></ul><a href="#" target="_blank" class="project-link"><span>View Project</span><svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"/></svg></a></div>
                 </article>
             </div>
         </section>
 
         <section class="content-section reveal">
-            <h2 class="section-heading" style="font-size: clamp(1.75rem, 4vw, 2.5rem);">Python-Based Projects</h2>
+            <h2 class="section-heading">Python-Based Projects</h2>
             <div class="projects-grid">
                 <article class="project-card reveal">
                     <img src="../projects/thumbnails/snake game.png" alt="Snake Game">
-                    <div class="project-content"><h3>Snake Game</h3><div class="tech-tags"><span>Python</span><span>OOP</span></div><a href="#" target="_blank" class="project-link"><span>View Project</span><svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"/></svg></a></div>
+                    <div class="project-content"><h3>Snake Game</h3><ul class="tech-tags"><li><span>Python</span></li><li><span>OOP</span></li></ul><a href="#" target="_blank" class="project-link"><span>View Project</span><svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"/></svg></a></div>
                 </article>
                 <article class="project-card reveal">
                     <img src="../projects/thumbnails/pingpong.png" alt="Pingpong Game">
-                    <div class="project-content"><h3>Ping-Pong Game</h3><div class="tech-tags"><span>Python</span><span>OOP</span></div><a href="#" target="_blank" class="project-link"><span>View Project</span><svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"/></svg></a></div>
+                    <div class="project-content"><h3>Ping-Pong Game</h3><ul class="tech-tags"><li><span>Python</span></li><li><span>OOP</span></li></ul><a href="#" target="_blank" class="project-link"><span>View Project</span><svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"/></svg></a></div>
                 </article>
                 <article class="project-card reveal">
                     <img src="../projects/thumbnails/turtlecrossing.png" alt="Turtle Crossing">
-                    <div class="project-content"><h3>Turtle Crossing Game</h3><div class="tech-tags"><span>Python</span><span>OOP</span></div><a href="#" target="_blank" class="project-link"><span>View Project</span><svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"/></svg></a></div>
+                    <div class="project-content"><h3>Turtle Crossing Game</h3><ul class="tech-tags"><li><span>Python</span></li><li><span>OOP</span></li></ul><a href="#" target="_blank" class="project-link"><span>View Project</span><svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"/></svg></a></div>
                 </article>
                 <article class="project-card reveal">
                     <img src="../projects/thumbnails/pomodoro.png" alt="Pomodoro Timer">
-                    <div class="project-content"><h3>Pomodoro Technique Timer</h3><div class="tech-tags"><span>Python</span><span>Tkinter</span></div><a href="#" target="_blank" class="project-link"><span>View Project</span><svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"/></svg></a></div>
+                    <div class="project-content"><h3>Pomodoro Technique Timer</h3><ul class="tech-tags"><li><span>Python</span></li><li><span>Tkinter</span></li></ul><a href="#" target="_blank" class="project-link"><span>View Project</span><svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"/></svg></a></div>
                 </article>
                 <article class="project-card reveal">
                     <img src="../projects/thumbnails/statesgame.png" alt="U.S. States Game">
-                    <div class="project-content"><h3>U.S. States Game</h3><div class="tech-tags"><span>Python</span><span>Pandas</span></div><a href="#" target="_blank" class="project-link"><span>View Project</span><svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"/></svg></a></div>
+                    <div class="project-content"><h3>U.S. States Game</h3><ul class="tech-tags"><li><span>Python</span></li><li><span>Pandas</span></li></ul><a href="#" target="_blank" class="project-link"><span>View Project</span><svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"/></svg></a></div>
                 </article>
                  <article class="project-card reveal">
                     <img src="../projects/thumbnails/blackjack.png" alt="BlackJack">
-                    <div class="project-content"><h3>BlackJack</h3><div class="tech-tags"><span>Python</span></div><a href="#" target="_blank" class="project-link"><span>View Project</span><svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"/></svg></a></div>
+                    <div class="project-content"><h3>BlackJack</h3><ul class="tech-tags"><li><span>Python</span></li></ul><a href="#" target="_blank" class="project-link"><span>View Project</span><svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"/></svg></a></div>
                 </article>
             </div>
         </section>

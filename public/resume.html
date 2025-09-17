@@ -9,309 +9,10 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Merriweather&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../styles.css">
     <style>
-        :root {
-            --primary-accent: #9397E9;
-            --secondary-accent: #00e5ff;
-            --text-primary: #e0e0e0;
-            --text-secondary: antiquewhite;
-            --glass-bg: rgba(255, 255, 255, 0.05);
-            --glass-border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-        html {
-        background: url('../assets/images/Background2.png') no-repeat center center fixed;
-        background-size: cover;
-        width: 100vw;
-        height: 100vh;
-        overflow-x: hidden;
-        color: var(--text-primary);
-        }
-        body{
-        margin: 0;
-        display: flex;
-        flex-direction: column;
-        min-height: 100vh;
-        font-family: 'Poppins', sans-serif;
-        }
-        header {
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-        main {
-            flex-grow: 1;
-            padding: 5vh 0;
-        }
-        section.content-section {
-            padding: 2rem;
-            margin: 0 auto 2rem auto;
-            width: 80vw;
-            max-width: 1200px;
-        }
-        #name{
-        color: var(--text-secondary);
-        font-family: 'Merriweather', serif;
-        font-size: clamp(1.25rem, 2vw, 1.75rem);
-        margin-top: 0px;
-        }
-        .nav-div{
-        padding: 3vh 0;
-        }
-        .nav-bar{
-        position: relative;
-        display: flex;
-        flex-direction: row;
-        margin-left: 5.5vw;
-        align-items: center;
-        justify-content: space-between; 
-        padding-right: 5.5vw;
-        }
-        .nav-bar-list{
-            display: grid;
-            grid-template-columns: 9vw 9vw 9vw 10vw 10vw 10vw;
-            margin: 0;
-            padding: 0;
-            list-style-type: none;
-        }
-        .nav-list{
-        font-family: 'Poppins', sans-serif;
-        display: flex;
-        list-style-type: none;
-        font-weight: bold;
-        }
-        .nav{
-        font-size: clamp(0.9rem, 1.7vw, 1.25rem);
-        color: var(--text-secondary);
-        text-decoration: none;
-        position: relative;
-        padding-bottom: 5px;
-        }
-        .nav::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 2px;
-            background-color: var(--secondary-accent);
-            transform: scaleX(0);
-            transform-origin: bottom right;
-            transition: transform 0.3s ease-out;
-        }
-        .nav:hover::after {
-            transform: scaleX(1);
-            transform-origin: bottom left;
-        }
-        li{
-        list-style-type: none;
-        font-size: clamp(0.9rem, 1.2vw, 1.1rem);
-        overflow-wrap: break-word;
-        word-break: break-word;
-        line-height: 1.8;
-        }
-        .section-heading, h2 { /* Grouped for consistency */
-            font-family: 'Merriweather', serif;
-            font-size: clamp(2rem, 5vw, 3rem);
-            margin-bottom: 2rem;
-            text-align: center;
-            background: linear-gradient(90deg, var(--secondary-accent), var(--text-secondary), var(--secondary-accent));
-            background-size: 200% auto;
-            background-clip: text;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            animation: gradient-shine 5s linear infinite;
-        }
-        h2 { /* Smaller heading for cards */
-           font-size: clamp(1.75rem, 3.5vw, 2.5rem);
-           margin-bottom: 1.5rem;
-           text-align: left;
-        }
-        h3{
-            color: var(--text-secondary);
-            font-family: 'Merriweather', serif;
-            margin-top: 0;
-            margin-bottom: 1rem;
-            font-size: clamp(1.25rem, 2vw, 1.5rem);
-        }
-        span{
-            font-weight: 600;
-            color: var(--text-secondary);
-        }
-        #educational_background{
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-        gap: 2rem;
-        }
-        #educational_background > div {
-            min-width: 0;
-            overflow-wrap: break-word;
-        }
-        ul {
-            padding-left: 0;
-            margin: 0;
-        }
-        .nav-toggle { display: none; }
-        .nav-toggle-label { display: none; }
-        .nav-toggle-label span,
-        .nav-toggle-label span::before,
-        .nav-toggle-label span::after {
-            display: block; background: var(--text-secondary); height: 3px;
-            width: 25px; border-radius: 2px; position: relative;
-        }
-        .nav-toggle-label span::before,
-        .nav-toggle-label span::after { content: ''; position: absolute; }
-        .nav-toggle-label span::before { bottom: 8px; }
-        .nav-toggle-label span::after { top: 8px; }
-        
-        .reveal {
-            opacity: 0;
-            transform: translateY(50px);
-            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
-        }
-        .reveal.active {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        .glass-card {
-            background: var(--glass-bg);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border-radius: 20px;
-            border: var(--glass-border);
-        }
-        .cta-button {
-            display: inline-block;
-            background: transparent;
-            border: 2px solid var(--secondary-accent);
-            color: var(--secondary-accent);
-            padding: 12px 30px;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: bold;
-            margin-top: 1.5rem;
-            transition: background-color 0.3s ease, color 0.3s ease;
-        }
-        .cta-button:hover {
-            background-color: var(--secondary-accent);
-            color: #0f0c29;
-        }
-        
-        #skills .skills-grid {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 2rem;
-            max-width: 900px;
-            margin: 3rem auto 0 auto;
-        }
-        .skill-item {
-            text-align: center;
-            transition: transform 0.3s ease;
-        }
-        .skill-item:hover {
-            transform: scale(1.1);
-        }
-        .skill-item svg {
-            width: 64px;
-            height: 64px;
-            color: var(--text-secondary);
-        }
-        .skill-item p {
-            margin-top: 0.5rem;
-            font-weight: 600;
-            color: var(--text-primary);
-        }
-        .awards-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 1rem 2rem;
-            padding-left: 20px; /* Indent for bullet points */
-        }
-        .awards-grid li {
-            list-style-type: disc;
-        }
-        
-        footer {
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            padding: 2rem 1rem;
-            text-align: center;
-            width: 100%;
-            position: relative;
-            z-index: 1;
-            box-sizing: border-box;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-        }
-        .social-icons {
-            margin-bottom: 1rem;
-        }
-        .social-icons a {
-            color: var(--text-secondary);
-            margin: 0 15px;
-            text-decoration: none;
-            transition: color 0.3s ease, transform 0.3s ease;
-            display: inline-block;
-        }
-        .social-icons a:hover {
-            color: var(--secondary-accent);
-            transform: translateY(-5px);
-        }
-        .social-icons svg {
-            width: 28px;
-            height: 28px;
-        }
-        .footer-copyright {
-            font-family: 'Merriweather', serif;
-            font-size: clamp(0.8rem, 1.5vw, 1rem);
-            color: var(--text-primary);
-        }
-        
-        @keyframes gradient-shine { to { background-position: 200% center; } }
-
-        @media (max-width: 768px){
-            section.content-section {
-                width: 85vw;
-                padding: 1.5rem;
-            }
-            .awards-grid {
-                grid-template-columns: 1fr; /* Single column for awards on mobile */
-            }
-            .nav-bar-list {
-                display: none;
-                position: fixed; 
-                top: 0; 
-                right: -100%;
-                background: rgba(15, 12, 41, 0.8);
-                backdrop-filter: blur(10px);
-                width: 100%; 
-                height: 100vh; 
-                flex-direction: column;
-                align-items: center; 
-                justify-content: center;
-                transition: right 0.3s ease-in-out;
-                z-index: 1000;
-            }
-            .nav-list { 
-                padding: 10px 0; 
-            }
-            .nav-toggle-label { 
-                display: block; 
-                cursor: pointer;
-                z-index: 1001;
-                margin-left: auto;
-            }
-            .nav-toggle:checked ~ .nav-bar-list { 
-                display: flex;
-                right: 0; 
-            }
-        }
-</style>
+        html { background: url('../assets/images/Background2.png') no-repeat center center fixed; }
+    </style>
 </head>
 <body>
     <header>
@@ -327,10 +28,10 @@
             <ul class="nav-bar-list">
                 <li class="nav-list"><a class="nav" href="../index.html">HOME</a></li>
                 <li class="nav-list"><a class="nav" href="./resume.html">RESUME</a></li>
-                <li class="nav-list"><a class="nav" href = ./about.html>ABOUT</a></li>
-                <li class="nav-list"><a class="nav" href = ./contact.html>CONTACT</a></li>
-                <li class="nav-list"><a class="nav" href = ./my-projects.html>PROJECTS</a></li>
-                <li class="nav-list"><a class="nav" href = ./achievements.html>ACHIEVEMENTS</a></li>
+                <li class="nav-list"><a class="nav" href = "./about.html">ABOUT</a></li>
+                <li class="nav-list"><a class="nav" href = "./contact.html">CONTACT</a></li>
+                <li class="nav-list"><a class="nav" href = "./my-projects.html">PROJECTS</a></li>
+                <li class="nav-list"><a class="nav" href = "./achievements.html">ACHIEVEMENTS</a></li>
             </ul>
         </nav>
         </div>
@@ -375,28 +76,28 @@
     
         <section id="skills" class="content-section reveal glass-card">
             <h2>My Tech Stack</h2>
-            <div class="skills-grid">
-                <div class="skill-item">
+            <ul class="skills-grid">
+                <li class="skill-item">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M3 3h18v18H3V3zm2 2v14h14V5H5zm2 2h2v2H7V7zm4 0h2v2h-2V7zm4 0h2v2h-2V7zm-8 4h2v2H7v-2zm4 0h2v2h-2v-2zm4 0h2v2h-2v-2zm-8 4h2v2H7v-2zm4 0h2v2h-2v-2z"/></svg>
                     <p>HTML</p>
-                </div>
-                <div class="skill-item">
+                </li>
+                <li class="skill-item">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M3 3h18v18H3V3zm2 2v14h14V5H5zm2 2h10v2H7V7zm0 4h10v2H7v-2zm0 4h10v2H7v-2z"/></svg>
                     <p>CSS</p>
-                </div>
-                <div class="skill-item">
+                </li>
+                <li class="skill-item">
                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M8 3v2H6v14h4v-2H8V5h2v14h4v-2h-2V5h2v14h4v2H8v-2h2V5H8V3zm10 0v18h-2V3h2z"/></svg>
                     <p>JavaScript</p>
-                </div>
-                <div class="skill-item">
+                </li>
+                <li class="skill-item">
                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 16H9v-6h2v6zm4 0h-2v-6h2v6zm-4-8h-2V8h2v2zm4 0h-2V8h2v2z"/></svg>
                     <p>Python</p>
-                </div>
-                <div class="skill-item">
+                </li>
+                <li class="skill-item">
                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg>
                     <p>Java</p>
-                </div>
-            </div>
+                </li>
+            </ul>
         </section>
     
         <section class="content-section reveal glass-card">
