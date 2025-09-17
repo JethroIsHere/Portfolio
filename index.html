@@ -229,17 +229,35 @@
         let lineDrawProgress = 0;
 
         const starData = [
-            { x: 0.25, y: 0.30, s: 2.3 }, { x: 0.20, y: 0.45, s: 2.5 }, { x: 0.25, y: 0.60, s: 2.3 }, 
-            { x: 0.35, y: 0.55, s: 2.0 }, { x: 0.32, y: 0.40, s: 2.2 }, { x: 0.40, y: 0.48, s: 2.0 }, 
-            { x: 0.50, y: 0.52, s: 2.0 }, { x: 0.60, y: 0.50, s: 2.0 }, { x: 0.70, y: 0.35, s: 2.3 }, 
-            { x: 0.80, y: 0.45, s: 2.5 }, { x: 0.75, y: 0.60, s: 2.3 }, { x: 0.65, y: 0.58, s: 2.0 }, 
-            { x: 0.63, y: 0.42, s: 2.2 }
+            // The "V" or Western Fish (stars 0-3)
+            { x: 0.10, y: 0.85, s: 3.0 },  // 0
+            { x: 0.28, y: 0.60, s: 2.3 },  // 1
+            { x: 0.15, y: 0.45, s: 2.5 },  // 2
+            { x: 0.20, y: 0.10, s: 2.5 },  // 3
+
+            // Connecting Line (stars 4-6)
+            { x: 0.40, y: 0.50, s: 2.0 },  // 4
+            { x: 0.55, y: 0.40, s: 2.2 },  // 5
+            { x: 0.68, y: 0.45, s: 2.3 },  // 6: Connection point
+
+            // The Pentagon or "Circlet" (stars 7-11)
+            { x: 0.70, y: 0.60, s: 2.0 },  // 7: Bottom-left of pentagon
+            { x: 0.85, y: 0.70, s: 2.3 },  // 8: Bottom-right of pentagon
+            { x: 0.95, y: 0.50, s: 2.5 },  // 9: Far-right of pentagon
+            { x: 0.85, y: 0.30, s: 2.3 },  // 10: Top-right of pentagon
+            { x: 0.70, y: 0.35, s: 2.2 }   // 11: Top-left of pentagon
         ];
 
         const connections = [
-            [0,1],[1,2],[2,3],[3,4],[4,0], [2,5],[5,6],[6,7],[7,10], 
-            [8,9],[9,10],[10,11],[11,12],[12,8]
-        ];
+                    // Western Fish lines
+                    [0, 1], [1, 2], [2, 3],
+                    // Connecting line
+                    [1, 4], [4, 5], [5, 6],
+                    // Connection to the Pentagon
+                    [6, 11],
+                    // Pentagon (Circlet) lines
+                    [7, 8], [8, 9], [9, 10], [10, 11], [11, 7]
+                ];
 
         function setupConstellation() {
             if (animationFrameId) cancelAnimationFrame(animationFrameId);
