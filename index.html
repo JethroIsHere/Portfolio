@@ -12,13 +12,97 @@
     <link rel="stylesheet" href="styles.css">
     <title>Jethro Roland Danocup - Home</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <style>
+        /* New CSS for the transition effect */
+        .transition-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-color: #04030d;
+            z-index: 10000;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 1s ease-in-out;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Merriweather', serif;
+            color: #d1f7ff;
+            text-shadow: 0 0 10px #9397E9, 0 0 20px #00e5ff;
+            font-size: 2rem;
+            flex-direction: column;
+            overflow: hidden;
+            text-align: center;
+        }
+
+        .transition-overlay.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .transition-overlay-content {
+            position: relative;
+            z-index: 10001;
+            opacity: 0;
+            transform: scale(0.8);
+            transition: opacity 1s ease-in, transform 1s ease-in;
+        }
+
+        .transition-overlay-content.show {
+            opacity: 1;
+            transform: scale(1);
+        }
+        
+        .transition-overlay-content.hide {
+            opacity: 0;
+        }
+
+        .transition-orb {
+            position: absolute;
+            width: 0;
+            height: 0;
+            background: radial-gradient(circle, #9397E9, #6A5ACD, #4682B4);
+            border-radius: 50%;
+            filter: blur(150px);
+            opacity: 0.5;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0) rotate(0deg);
+            transition: all 2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .transition-orb.grow {
+            width: 100vw;
+            height: 100vh;
+            transform: translate(-50%, -50%) scale(2) rotate(180deg);
+        }
+        
+        .transition-orb.accelerate {
+            transition-duration: 2s;
+            filter: blur(200px);
+            opacity: 1;
+            transform: translate(-50%, -50%) scale(5) rotate(720deg);
+            background: white;
+            box-shadow: 0 0 100px white;
+        }
+    </style>
 </head>
 <body>
+    <div class="transition-overlay">
+        <div class="transition-orb"></div>
+        <div class="transition-overlay-content" id="transition-text">
+            <p id="first-line" class="fade-in">What's this?</p>
+            <p id="second-line" style="opacity: 0; margin-top: 1rem;">Where am I being taken to?</p>
+        </div>
+    </div>
+
     <div id="particle-canvas"></div>
     <header>
         <div class="nav-div">
         <nav class="nav-bar">
-            <h2 id="name">Jethro Roland Danocup</h2>
+            <h2 id="name"><a href="#" class="sanctuary-link" data-href="./public/sanctuary.html">Jethro Roland Danocup</a></h2>
             
             <input type="checkbox" id="nav-toggle" class="nav-toggle">
             <label for="nav-toggle" class="nav-toggle-label">
@@ -111,7 +195,7 @@
                     <p>Python</p>
                 </li>
                 <li class="skill-item">
-                     <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg>
+                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg>
                     <p>Java</p>
                 </li>
             </ul>
@@ -311,12 +395,12 @@
             });
             
             animationFrameId = requestAnimationFrame(animateConstellation);
-        }
-
-        let resizeTimer;
+        };
+        
         window.addEventListener('resize', () => {
-            clearTimeout(resizeTimer);
-            resizeTimer = setTimeout(setupConstellation, 250);
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
         });
 
         const heroObserver = new IntersectionObserver((entries) => {
@@ -326,12 +410,18 @@
                    heroObserver.unobserve(entry.target);
                 }
             });
-        });
+        }, { threshold: 0.1 });
         heroObserver.observe(document.querySelector('.Hero-section'));
         
         document.addEventListener('DOMContentLoaded', () => {
             const music = document.getElementById('background-music');
             const musicControl = document.getElementById('music-control');
+            const sanctuaryLink = document.querySelector('.sanctuary-link');
+            const transitionOverlay = document.querySelector('.transition-overlay');
+            const transitionText = document.getElementById('transition-text');
+            const secondLine = document.getElementById('second-line');
+            const transitionOrb = document.querySelector('.transition-orb');
+            const firstLine = document.getElementById('first-line');
 
             if (music && musicControl) {
                 const playIcon = document.getElementById('play-icon');
@@ -354,6 +444,33 @@
                 };
 
                 musicControl.addEventListener('click', togglePlay);
+            }
+
+            // Transition logic
+            if (sanctuaryLink && transitionOverlay) {
+                sanctuaryLink.addEventListener('click', (event) => {
+                    event.preventDefault();
+
+                    transitionOverlay.classList.add('visible');
+                    
+                    // Stage 1: "What's this?" fades in slowly, orb grows slowly
+                    setTimeout(() => {
+                        transitionText.classList.add('show');
+                        transitionOrb.classList.add('grow');
+                    }, 500);
+
+                    // Stage 2: "What's this?" fades out. New text fades in. Orb accelerates.
+                    setTimeout(() => {
+                        firstLine.classList.add('hide');
+                        secondLine.style.opacity = 1;
+                        transitionOrb.classList.add('accelerate');
+                    }, 3500);
+
+                    // Stage 3: Navigate to the sanctuary after the animation
+                    setTimeout(() => {
+                        window.location.href = sanctuaryLink.dataset.href;
+                    }, 6500);
+                });
             }
         });
     </script>
