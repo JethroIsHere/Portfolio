@@ -13,6 +13,11 @@
     <title>Jethro Roland Danocup - Home</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <style>
+        /* This rule removes the underline on mobile tap/active state */
+        .sanctuary-link:active, .nav:active {
+            text-decoration: none;
+        }
+
         /* New CSS for the transition effect */
         .transition-overlay {
             position: fixed;
@@ -36,9 +41,7 @@
             overflow: hidden;
             text-align: center;
         }
-        a:active {
-            text-decoration: none;
-            }
+
         .transition-overlay.visible {
             opacity: 1;
             visibility: visible;
