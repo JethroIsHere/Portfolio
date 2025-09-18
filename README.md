@@ -24,7 +24,7 @@ The design is centered around a modern, celestial "outer space" theme, utilizing
     -   **Contact:** A modern contact page with direct info and a functional email form.
 -   **Interactive Homepage:** Features a dynamic background with **Three.js** particles and a custom animated constellation graphic created with the **HTML5 Canvas API**.
 -   **On-Scroll Animations:** Content sections gracefully fade and slide into view as the user scrolls, powered by the Intersection Observer API.
--   **Cross-Page Background Music:** An optional background music player with user controls that persists playback state and time across all pages using `localStorage`.
+-   **Cross-Page Background Music:** An optional background music player with user controls that persists playback state and time across selected pages. I used background music from the main series Pokemon games such as the Meteor Falls soundtrack from Pokemon Emerald and the Intro music from Pokemon Mystery Dungeon. The soundtrack reflect my website theme which is the outer space, and something hidden if you click one of the elements. 
 
 ---
 
@@ -70,4 +70,5 @@ To run this project locally:
 -   **Facebook:** [Jethro Roland Danocup](https://www.facebook.com/jethro.roland.danocup)
 -   **Instagram:** [@___ro__n_](https://www.instagram.com/___ro__n_/)
 
-*Last updated: September 15, 2025*
+*Last updated: September 18, 2025*
+*P.S. If you click my name logo in the landing page, there's a hidden passage 🤫*
