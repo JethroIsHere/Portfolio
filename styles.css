@@ -987,3 +987,7 @@ main.contact-page {
         padding: 1.5rem;
     }
 }
+
+a:active {
+  text-decoration: none;
+}
